@@ -345,7 +345,7 @@ export default function BookingPage() {
                           : selectedDate && isSameDay(day, selectedDate)
                           ? 'bg-accent text-white font-semibold'
                           : isToday(day)
-                          ? 'bg-primary/10 text-primary font-semibold hover:bg-primary/20'
+                          ? 'text-primary font-semibold hover:bg-gray-100'
                           : 'text-gray-700 hover:bg-gray-100'
                       }`}
                     >
