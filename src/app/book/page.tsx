@@ -172,18 +172,31 @@ export default function BookingPage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Check className="text-green-600" size={40} />
-          </div>
-          <h1 className="text-2xl font-semibold text-primary">Booking modtaget!</h1>
-          <p className="mt-4 text-gray-600">
-            Din booking af {selectedRoom === 'meeting' ? 'mødelokalet' : 'podcast studiet'} den{' '}
-            {selectedDate && format(selectedDate, "d. MMMM yyyy", { locale: da })} kl. {selectedTime} er modtaget.
-          </p>
-          {!user?.is_member && (
-            <p className="mt-4 text-sm text-gray-500">
-              Vi sender en faktura til din email.
-            </p>
+          {user?.is_member ? (
+            <>
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Check className="text-green-600" size={40} />
+              </div>
+              <h1 className="text-2xl font-semibold text-primary">Booking bekræftet!</h1>
+              <p className="mt-4 text-gray-600">
+                Din booking af {selectedRoom === 'meeting' ? 'mødelokalet' : 'podcast studiet'} den{' '}
+                {selectedDate && format(selectedDate, "d. MMMM yyyy", { locale: da })} kl. {selectedTime} er bekræftet.
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Clock className="text-yellow-600" size={40} />
+              </div>
+              <h1 className="text-2xl font-semibold text-primary">Booking modtaget!</h1>
+              <p className="mt-4 text-gray-600">
+                Din booking af {selectedRoom === 'meeting' ? 'mødelokalet' : 'podcast studiet'} den{' '}
+                {selectedDate && format(selectedDate, "d. MMMM yyyy", { locale: da })} kl. {selectedTime} afventer godkendelse.
+              </p>
+              <p className="mt-4 text-sm text-yellow-700 bg-yellow-50 p-3 rounded">
+                Vi gennemgår din forespørgsel og vender tilbage hurtigst muligt. Du modtager en bekræftelse på email.
+              </p>
+            </>
           )}
           <div className="mt-8 space-y-3">
             <Link

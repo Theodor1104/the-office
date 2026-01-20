@@ -64,18 +64,21 @@ export async function POST(request: Request) {
     }
   }
 
-  // Check for conflicts
+  // Check for conflicts (only confirmed bookings block the slot)
   const { data: existingBookings } = await supabase
     .from('bookings')
     .select('id')
     .eq('room_id', room.id)
-    .neq('status', 'cancelled')
+    .eq('status', 'confirmed')
     .gte('end_time', start_time)
     .lte('start_time', end_time)
 
   if (existingBookings && existingBookings.length > 0) {
     return NextResponse.json({ error: 'Time slot already booked' }, { status: 409 })
   }
+
+  // Set status based on membership: members get instant confirmation, non-members need approval
+  const bookingStatus = isMember ? 'confirmed' : 'pending'
 
   // Create booking
   const { data: booking, error: bookingError } = await supabase
@@ -85,7 +88,7 @@ export async function POST(request: Request) {
       room_id: room.id,
       start_time,
       end_time,
-      status: 'confirmed',
+      status: bookingStatus,
       total_price: totalPrice,
       notes
     })
