@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Users, Crown, Shield, Check, X, Calendar, Clock } from 'lucide-react'
+import { Users, Crown, Shield, Check, X, Calendar, Clock, Trash2 } from 'lucide-react'
 import { format } from 'date-fns'
 import { da } from 'date-fns/locale'
 
@@ -13,8 +13,11 @@ interface Profile {
   full_name: string | null
   phone: string | null
   is_member: boolean
+  is_admin: boolean
   created_at: string
 }
+
+const PRIMARY_ADMIN_EMAIL = 'theodorhauch@gmail.com'
 
 interface Booking {
   id: string
@@ -26,8 +29,6 @@ interface Booking {
   profiles: { full_name: string | null; email: string; is_member: boolean }
   rooms: { name: string; type: string }
 }
-
-const ADMIN_EMAIL = 'theodorhauch@gmail.com'
 
 export default function AdminPage() {
   const [profiles, setProfiles] = useState<Profile[]>([])
@@ -48,7 +49,22 @@ export default function AdminPage() {
         return
       }
 
-      if (user.email !== ADMIN_EMAIL) {
+      // Check if primary admin or has is_admin flag
+      if (user.email === PRIMARY_ADMIN_EMAIL) {
+        setIsAdmin(true)
+        fetchUsers()
+        fetchBookings()
+        return
+      }
+
+      // Check database for is_admin
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('is_admin')
+        .eq('id', user.id)
+        .single()
+
+      if (!profile?.is_admin) {
         router.push('/')
         return
       }
@@ -59,7 +75,7 @@ export default function AdminPage() {
     }
 
     checkAdmin()
-  }, [router, supabase.auth])
+  }, [router, supabase.auth, supabase])
 
   const fetchUsers = async () => {
     try {
@@ -103,6 +119,48 @@ export default function AdminPage() {
       }
     } catch (error) {
       console.error('Failed to update booking:', error)
+    } finally {
+      setUpdating(null)
+    }
+  }
+
+  const deleteBooking = async (bookingId: string) => {
+    if (!confirm('Er du sikker på du vil slette denne booking permanent?')) return
+
+    setUpdating(bookingId)
+    try {
+      const response = await fetch('/api/admin/bookings', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bookingId }),
+      })
+
+      if (response.ok) {
+        setBookings(bookings.filter(b => b.id !== bookingId))
+      }
+    } catch (error) {
+      console.error('Failed to delete booking:', error)
+    } finally {
+      setUpdating(null)
+    }
+  }
+
+  const toggleAdmin = async (userId: string, currentStatus: boolean) => {
+    setUpdating(userId)
+    try {
+      const response = await fetch('/api/admin/users', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, is_admin: !currentStatus }),
+      })
+
+      if (response.ok) {
+        setProfiles(profiles.map(p =>
+          p.id === userId ? { ...p, is_admin: !currentStatus } : p
+        ))
+      }
+    } catch (error) {
+      console.error('Failed to update user:', error)
     } finally {
       setUpdating(null)
     }
@@ -280,36 +338,46 @@ export default function AdminPage() {
                         )}
                       </td>
                       <td className="px-6 py-4">
-                        {booking.status === 'pending' && (
-                          <div className="flex space-x-2">
+                        <div className="flex space-x-2">
+                          {booking.status === 'pending' && (
+                            <>
+                              <button
+                                onClick={() => updateBookingStatus(booking.id, 'confirmed')}
+                                disabled={updating === booking.id}
+                                className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50"
+                              >
+                                <Check size={14} className="mr-1" />
+                                Godkend
+                              </button>
+                              <button
+                                onClick={() => updateBookingStatus(booking.id, 'rejected')}
+                                disabled={updating === booking.id}
+                                className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 disabled:opacity-50"
+                              >
+                                <X size={14} className="mr-1" />
+                                Afvis
+                              </button>
+                            </>
+                          )}
+                          {booking.status === 'confirmed' && (
                             <button
-                              onClick={() => updateBookingStatus(booking.id, 'confirmed')}
+                              onClick={() => updateBookingStatus(booking.id, 'cancelled')}
                               disabled={updating === booking.id}
-                              className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50"
-                            >
-                              <Check size={14} className="mr-1" />
-                              Godkend
-                            </button>
-                            <button
-                              onClick={() => updateBookingStatus(booking.id, 'rejected')}
-                              disabled={updating === booking.id}
-                              className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 disabled:opacity-50"
+                              className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50"
                             >
                               <X size={14} className="mr-1" />
-                              Afvis
+                              Annuller
                             </button>
-                          </div>
-                        )}
-                        {booking.status === 'confirmed' && (
+                          )}
                           <button
-                            onClick={() => updateBookingStatus(booking.id, 'cancelled')}
+                            onClick={() => deleteBooking(booking.id)}
                             disabled={updating === booking.id}
-                            className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50"
+                            className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 disabled:opacity-50"
+                            title="Slet permanent"
                           >
-                            <X size={14} className="mr-1" />
-                            Annuller
+                            <Trash2 size={14} />
                           </button>
-                        )}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -365,41 +433,62 @@ export default function AdminPage() {
                     <td className="px-6 py-4 text-gray-600">{profile.email}</td>
                     <td className="px-6 py-4 text-gray-600">{profile.phone || '-'}</td>
                     <td className="px-6 py-4">
-                      {profile.is_member ? (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                          <Crown size={14} className="mr-1" />
-                          Medlem
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                          Gæst
-                        </span>
-                      )}
+                      <div className="flex flex-wrap gap-1">
+                        {profile.is_admin && (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                            <Shield size={12} className="mr-1" />
+                            Admin
+                          </span>
+                        )}
+                        {profile.is_member ? (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <Crown size={12} className="mr-1" />
+                            Medlem
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                            Gæst
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="px-6 py-4">
-                      <button
-                        onClick={() => toggleMember(profile.id, profile.is_member)}
-                        disabled={updating === profile.id}
-                        className={`inline-flex items-center px-4 py-2 rounded text-sm font-medium transition-colors ${
-                          profile.is_member
-                            ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                            : 'bg-green-100 text-green-700 hover:bg-green-200'
-                        } disabled:opacity-50`}
-                      >
-                        {updating === profile.id ? (
-                          'Opdaterer...'
-                        ) : profile.is_member ? (
-                          <>
-                            <X size={14} className="mr-1" />
-                            Fjern medlem
-                          </>
-                        ) : (
-                          <>
-                            <Check size={14} className="mr-1" />
-                            Gør til medlem
-                          </>
-                        )}
-                      </button>
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          onClick={() => toggleMember(profile.id, profile.is_member)}
+                          disabled={updating === profile.id}
+                          className={`inline-flex items-center px-3 py-1 rounded text-sm font-medium transition-colors ${
+                            profile.is_member
+                              ? 'bg-red-100 text-red-700 hover:bg-red-200'
+                              : 'bg-green-100 text-green-700 hover:bg-green-200'
+                          } disabled:opacity-50`}
+                        >
+                          {profile.is_member ? (
+                            <>
+                              <X size={14} className="mr-1" />
+                              Fjern medlem
+                            </>
+                          ) : (
+                            <>
+                              <Check size={14} className="mr-1" />
+                              Medlem
+                            </>
+                          )}
+                        </button>
+                        <button
+                          onClick={() => toggleAdmin(profile.id, profile.is_admin)}
+                          disabled={updating === profile.id || profile.email === PRIMARY_ADMIN_EMAIL}
+                          className={`inline-flex items-center px-3 py-1 rounded text-sm font-medium transition-colors ${
+                            profile.is_admin
+                              ? 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          } disabled:opacity-50`}
+                          title={profile.email === PRIMARY_ADMIN_EMAIL ? 'Primær admin kan ikke ændres' : ''}
+                        >
+                          <Shield size={14} className="mr-1" />
+                          {profile.is_admin ? 'Fjern admin' : 'Gør admin'}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

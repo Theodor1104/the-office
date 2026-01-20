@@ -1,7 +1,17 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 
-const ADMIN_EMAIL = 'theodorhauch@gmail.com'
+const PRIMARY_ADMIN_EMAIL = 'theodorhauch@gmail.com'
+
+async function isAdmin(supabase: Awaited<ReturnType<typeof createClient>>, userId: string, email: string) {
+  if (email === PRIMARY_ADMIN_EMAIL) return true
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('is_admin')
+    .eq('id', userId)
+    .single()
+  return profile?.is_admin === true
+}
 
 // Get all bookings (for admin)
 export async function GET() {
@@ -9,7 +19,7 @@ export async function GET() {
 
   // Check if user is admin
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user || user.email !== ADMIN_EMAIL) {
+  if (!user || !(await isAdmin(supabase, user.id, user.email || ''))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -36,7 +46,7 @@ export async function PATCH(request: Request) {
 
   // Check if user is admin
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user || user.email !== ADMIN_EMAIL) {
+  if (!user || !(await isAdmin(supabase, user.id, user.email || ''))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -49,6 +59,30 @@ export async function PATCH(request: Request) {
   const { error } = await supabase
     .from('bookings')
     .update({ status })
+    .eq('id', bookingId)
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+
+  return NextResponse.json({ success: true })
+}
+
+// Delete booking (admin only)
+export async function DELETE(request: Request) {
+  const supabase = await createClient()
+
+  // Check if user is admin
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user || !(await isAdmin(supabase, user.id, user.email || ''))) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  const { bookingId } = await request.json()
+
+  const { error } = await supabase
+    .from('bookings')
+    .delete()
     .eq('id', bookingId)
 
   if (error) {

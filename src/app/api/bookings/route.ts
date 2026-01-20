@@ -101,3 +101,61 @@ export async function POST(request: Request) {
 
   return NextResponse.json(booking, { status: 201 })
 }
+
+// Cancel own booking (user must own booking, and it must be at least 48h before start time)
+export async function DELETE(request: Request) {
+  const supabase = await createClient()
+
+  // Check if user is authenticated
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  const { bookingId } = await request.json()
+
+  // Get the booking to verify ownership and check time
+  const { data: booking, error: fetchError } = await supabase
+    .from('bookings')
+    .select('user_id, start_time, status')
+    .eq('id', bookingId)
+    .single()
+
+  if (fetchError || !booking) {
+    return NextResponse.json({ error: 'Booking not found' }, { status: 404 })
+  }
+
+  // Check if user owns the booking
+  if (booking.user_id !== user.id) {
+    return NextResponse.json({ error: 'Not your booking' }, { status: 403 })
+  }
+
+  // Check if booking is already cancelled
+  if (booking.status === 'cancelled') {
+    return NextResponse.json({ error: 'Booking already cancelled' }, { status: 400 })
+  }
+
+  // Check if at least 48 hours before start time
+  const startTime = new Date(booking.start_time)
+  const now = new Date()
+  const hoursUntilStart = (startTime.getTime() - now.getTime()) / (1000 * 60 * 60)
+
+  if (hoursUntilStart < 48) {
+    return NextResponse.json({
+      error: 'Kan ikke aflyse mindre end 48 timer før booking'
+    }, { status: 400 })
+  }
+
+  // Cancel the booking (set status to cancelled instead of deleting)
+  const { error: updateError } = await supabase
+    .from('bookings')
+    .update({ status: 'cancelled' })
+    .eq('id', bookingId)
+
+  if (updateError) {
+    return NextResponse.json({ error: updateError.message }, { status: 500 })
+  }
+
+  return NextResponse.json({ success: true })
+}

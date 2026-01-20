@@ -39,8 +39,43 @@ export default function MyPage() {
   const [user, setUser] = useState<UserData | null>(null)
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
+  const [cancelling, setCancelling] = useState<string | null>(null)
   const router = useRouter()
   const supabase = createClient()
+
+  const canCancelBooking = (startTime: string) => {
+    const start = new Date(startTime)
+    const now = new Date()
+    const hoursUntilStart = (start.getTime() - now.getTime()) / (1000 * 60 * 60)
+    return hoursUntilStart >= 48
+  }
+
+  const cancelBooking = async (bookingId: string) => {
+    if (!confirm('Er du sikker på du vil aflyse denne booking?')) return
+
+    setCancelling(bookingId)
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bookingId }),
+      })
+
+      if (response.ok) {
+        setBookings(bookings.map(b =>
+          b.id === bookingId ? { ...b, status: 'cancelled' } : b
+        ))
+      } else {
+        const data = await response.json()
+        alert(data.error || 'Kunne ikke aflyse booking')
+      }
+    } catch (error) {
+      console.error('Failed to cancel booking:', error)
+      alert('Der opstod en fejl')
+    } finally {
+      setCancelling(null)
+    }
+  }
 
   useEffect(() => {
     const getUser = async () => {
@@ -262,6 +297,28 @@ export default function MyPage() {
                           </p>
                         </div>
                       </div>
+                      {/* Cancel button - only show for non-cancelled bookings at least 48h away */}
+                      {booking.status !== 'cancelled' && canCancelBooking(booking.start_time) && (
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <button
+                            onClick={() => cancelBooking(booking.id)}
+                            disabled={cancelling === booking.id}
+                            className="text-sm text-red-600 hover:text-red-800 disabled:opacity-50"
+                          >
+                            {cancelling === booking.id ? 'Aflyser...' : 'Aflys booking'}
+                          </button>
+                          <span className="text-xs text-gray-400 ml-2">
+                            (gratis afbestilling op til 48 timer før)
+                          </span>
+                        </div>
+                      )}
+                      {booking.status !== 'cancelled' && !canCancelBooking(booking.start_time) && (
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <span className="text-xs text-gray-400">
+                            Kan ikke aflyses mindre end 48 timer før
+                          </span>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
