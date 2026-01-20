@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mic, Users, Monitor, Clock, ArrowRight, Presentation, MapPin, Star, Coffee } from 'lucide-react'
+import { Mic, Users, Monitor, Clock, ArrowRight, Presentation, Coffee } from 'lucide-react'
 import { PRICING } from '@/lib/types'
 
 export default function Home() {
@@ -168,85 +168,6 @@ export default function Home() {
                 fill
                 className="object-cover"
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials / Social Proof */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-primary">
-              Hvad siger vores <span className="font-semibold">medlemmer?</span>
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-secondary rounded-lg p-8">
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="text-yellow-500 fill-yellow-500" size={18} />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-6">
-                &ldquo;Podcast studiet er fantastisk! Professionelt udstyr og perfekt lydkvalitet.
-                Nemt at booke og super fleksibelt.&rdquo;
-              </p>
-              <div className="flex items-center">
-                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                  MK
-                </div>
-                <div className="ml-3">
-                  <p className="font-semibold text-primary">Maria K.</p>
-                  <p className="text-sm text-gray-500">Podcast Host</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-secondary rounded-lg p-8">
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="text-yellow-500 fill-yellow-500" size={18} />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-6">
-                &ldquo;Perfekt placering tæt på metroen. Fællesskabet er fantastisk -
-                jeg har mødt flere samarbejdspartnere her.&rdquo;
-              </p>
-              <div className="flex items-center">
-                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                  JH
-                </div>
-                <div className="ml-3">
-                  <p className="font-semibold text-primary">Jonas H.</p>
-                  <p className="text-sm text-gray-500">Freelance Udvikler</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-secondary rounded-lg p-8">
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="text-yellow-500 fill-yellow-500" size={18} />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-6">
-                &ldquo;Som medlem får jeg gratis adgang til mødelokale og podcast studie.
-                Det er virkelig god value for money!&rdquo;
-              </p>
-              <div className="flex items-center">
-                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                  SL
-                </div>
-                <div className="ml-3">
-                  <p className="font-semibold text-primary">Sara L.</p>
-                  <p className="text-sm text-gray-500">Startup Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center space-x-2 text-gray-500">
-              <MapPin size={18} />
-              <span>Martensens Allé 8, Frederiksberg - 2 min fra metroen</span>
             </div>
           </div>
         </div>
