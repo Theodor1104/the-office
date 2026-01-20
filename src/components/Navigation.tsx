@@ -13,30 +13,33 @@ export default function Navigation() {
   const supabase = useMemo(() => createClient(), [])
 
   useEffect(() => {
-    const getUser = async () => {
+    const checkSession = async () => {
       try {
-        const { data: { user: authUser } } = await supabase.auth.getUser()
-        if (authUser) {
-          setUser({ email: authUser.email || '' })
+        // First check session, then get user
+        const { data: { session } } = await supabase.auth.getSession()
+        if (session?.user) {
+          setUser({ email: session.user.email || '' })
         } else {
           setUser(null)
         }
       } catch (error) {
-        console.error('Error getting user:', error)
+        console.error('Error getting session:', error)
         setUser(null)
       } finally {
         setIsLoading(false)
       }
     }
 
-    getUser()
+    checkSession()
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth state changed:', event, session?.user?.email)
       if (session?.user) {
         setUser({ email: session.user.email || '' })
       } else {
         setUser(null)
       }
+      setIsLoading(false)
     })
 
     return () => subscription.unsubscribe()
