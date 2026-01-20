@@ -343,10 +343,10 @@ export default function BookingPage() {
                         isPast
                           ? 'text-gray-300 cursor-not-allowed'
                           : selectedDate && isSameDay(day, selectedDate)
-                          ? 'bg-white text-black font-semibold'
+                          ? 'bg-accent text-white font-semibold'
                           : isToday(day)
                           ? 'bg-primary/10 text-primary font-semibold hover:bg-primary/20'
-                          : 'hover:bg-gray-100'
+                          : 'text-gray-700 hover:bg-gray-100'
                       }`}
                     >
                       <span className="text-sm">{format(day, 'd')}</span>
