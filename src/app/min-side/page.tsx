@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -12,7 +12,8 @@ import {
   MapPin,
   Check,
   X,
-  Star
+  Star,
+  RefreshCw
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { format } from 'date-fns'
@@ -39,6 +40,7 @@ export default function MyPage() {
   const [user, setUser] = useState<UserData | null>(null)
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
+  const [refreshing, setRefreshing] = useState(false)
   const [cancelling, setCancelling] = useState<string | null>(null)
   const router = useRouter()
   const supabase = createClient()
@@ -77,6 +79,45 @@ export default function MyPage() {
     }
   }
 
+  const fetchBookings = useCallback(async (userId: string) => {
+    const { data: userBookings } = await supabase
+      .from('bookings')
+      .select(`
+        id,
+        start_time,
+        end_time,
+        status,
+        total_price,
+        rooms:room_id (name, type)
+      `)
+      .eq('user_id', userId)
+      .neq('status', 'rejected')
+      .gte('start_time', new Date().toISOString())
+      .order('start_time', { ascending: true })
+
+    if (userBookings) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setBookings(userBookings.map((b: any) => ({
+        id: b.id,
+        room_name: b.rooms?.name || 'Ukendt lokale',
+        room_type: b.rooms?.type || 'meeting',
+        start_time: b.start_time,
+        end_time: b.end_time,
+        status: b.status as 'pending' | 'confirmed' | 'cancelled',
+        total_price: b.total_price,
+      })))
+    }
+  }, [supabase])
+
+  const refreshBookings = async () => {
+    const { data: { user: authUser } } = await supabase.auth.getUser()
+    if (!authUser) return
+
+    setRefreshing(true)
+    await fetchBookings(authUser.id)
+    setRefreshing(false)
+  }
+
   useEffect(() => {
     const getUser = async () => {
       const { data: { user: authUser } } = await supabase.auth.getUser()
@@ -100,40 +141,23 @@ export default function MyPage() {
         is_member: profile?.is_member || false,
       })
 
-      // Fetch user's bookings from database (exclude rejected bookings)
-      const { data: userBookings } = await supabase
-        .from('bookings')
-        .select(`
-          id,
-          start_time,
-          end_time,
-          status,
-          total_price,
-          rooms:room_id (name, type)
-        `)
-        .eq('user_id', authUser.id)
-        .neq('status', 'rejected')
-        .gte('start_time', new Date().toISOString())
-        .order('start_time', { ascending: true })
-
-      if (userBookings) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        setBookings(userBookings.map((b: any) => ({
-          id: b.id,
-          room_name: b.rooms?.name || 'Ukendt lokale',
-          room_type: b.rooms?.type || 'meeting',
-          start_time: b.start_time,
-          end_time: b.end_time,
-          status: b.status as 'pending' | 'confirmed' | 'cancelled',
-          total_price: b.total_price,
-        })))
-      }
-
+      // Fetch user's bookings
+      await fetchBookings(authUser.id)
       setLoading(false)
     }
 
     getUser()
-  }, [router, supabase])
+
+    // Refresh bookings when window gains focus
+    const handleFocus = () => {
+      refreshBookings()
+    }
+    window.addEventListener('focus', handleFocus)
+
+    return () => {
+      window.removeEventListener('focus', handleFocus)
+    }
+  }, [router, supabase, fetchBookings])
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
@@ -235,10 +259,20 @@ export default function MyPage() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-lg font-semibold text-primary flex items-center">
-                  <Calendar className="mr-2 text-primary" size={20} />
-                  Mine bookinger
-                </h2>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-lg font-semibold text-primary flex items-center">
+                    <Calendar className="mr-2 text-primary" size={20} />
+                    Mine bookinger
+                  </h2>
+                  <button
+                    onClick={refreshBookings}
+                    disabled={refreshing}
+                    className="p-1 text-gray-400 hover:text-primary transition-colors disabled:opacity-50"
+                    title="Opdater bookinger"
+                  >
+                    <RefreshCw size={16} className={refreshing ? 'animate-spin' : ''} />
+                  </button>
+                </div>
                 <Link
                   href="/book"
                   className="flex items-center bg-white text-black px-4 py-2 rounded font-medium hover:bg-gray-200 transition-colors"
