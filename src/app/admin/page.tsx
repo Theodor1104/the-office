@@ -26,7 +26,7 @@ interface Booking {
   status: string
   total_price: number
   created_at: string
-  profiles: { full_name: string | null; email: string; is_member: boolean }
+  profiles: { full_name: string | null; email: string; phone: string | null; is_member: boolean }
   rooms: { name: string; type: string }
 }
 
@@ -297,6 +297,9 @@ export default function AdminPage() {
                             {booking.profiles?.full_name || 'Ingen navn'}
                           </p>
                           <p className="text-sm text-gray-500">{booking.profiles?.email}</p>
+                          {booking.profiles?.phone && (
+                            <p className="text-sm text-gray-500">{booking.profiles.phone}</p>
+                          )}
                           {!booking.profiles?.is_member && (
                             <span className="text-xs text-orange-600">Gæst</span>
                           )}

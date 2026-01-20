@@ -100,7 +100,7 @@ export default function MyPage() {
         is_member: profile?.is_member || false,
       })
 
-      // Fetch user's bookings from database
+      // Fetch user's bookings from database (exclude rejected bookings)
       const { data: userBookings } = await supabase
         .from('bookings')
         .select(`
@@ -112,6 +112,7 @@ export default function MyPage() {
           rooms:room_id (name, type)
         `)
         .eq('user_id', authUser.id)
+        .neq('status', 'rejected')
         .gte('start_time', new Date().toISOString())
         .order('start_time', { ascending: true })
 
