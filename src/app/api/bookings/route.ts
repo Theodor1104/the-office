@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   const supabase = await createClient()
 
+  // Only show confirmed bookings in calendar (not pending, cancelled, or rejected)
   const { data: bookings, error } = await supabase
     .from('bookings')
     .select(`
@@ -11,6 +12,7 @@ export async function GET() {
       profiles:user_id (full_name, email),
       rooms:room_id (name, type)
     `)
+    .eq('status', 'confirmed')
     .gte('start_time', new Date().toISOString())
     .order('start_time', { ascending: true })
 
@@ -42,15 +44,21 @@ export async function POST(request: Request) {
     .single()
 
   if (roomError || !room) {
-    return NextResponse.json({ error: 'Room not found' }, { status: 404 })
+    console.error('Room not found:', room_type, roomError)
+    return NextResponse.json({ error: 'Lokale ikke fundet. Kontakt support.' }, { status: 404 })
   }
 
   // Get user profile to check if member
-  const { data: profile } = await supabase
+  const { data: profile, error: profileError } = await supabase
     .from('profiles')
     .select('is_member')
     .eq('id', user.id)
     .single()
+
+  if (profileError) {
+    console.error('Profile error:', profileError)
+    return NextResponse.json({ error: 'Profil ikke fundet. Prøv at logge ind igen.' }, { status: 404 })
+  }
 
   const isMember = profile?.is_member || false
 
@@ -64,17 +72,17 @@ export async function POST(request: Request) {
     }
   }
 
-  // Check for conflicts (only confirmed bookings block the slot)
+  // Check for conflicts (both confirmed AND pending bookings block the slot to prevent double booking)
   const { data: existingBookings } = await supabase
     .from('bookings')
-    .select('id')
+    .select('id, status')
     .eq('room_id', room.id)
-    .eq('status', 'confirmed')
+    .in('status', ['confirmed', 'pending'])
     .gte('end_time', start_time)
     .lte('start_time', end_time)
 
   if (existingBookings && existingBookings.length > 0) {
-    return NextResponse.json({ error: 'Time slot already booked' }, { status: 409 })
+    return NextResponse.json({ error: 'Tidspunktet er allerede booket' }, { status: 409 })
   }
 
   // Set status based on membership: members get instant confirmation, non-members need approval
@@ -96,7 +104,8 @@ export async function POST(request: Request) {
     .single()
 
   if (bookingError) {
-    return NextResponse.json({ error: bookingError.message }, { status: 500 })
+    console.error('Booking insert error:', bookingError)
+    return NextResponse.json({ error: 'Kunne ikke oprette booking. Prøv igen.' }, { status: 500 })
   }
 
   return NextResponse.json(booking, { status: 201 })

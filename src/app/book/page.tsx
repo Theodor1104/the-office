@@ -129,15 +129,17 @@ export default function BookingPage() {
         }),
       })
 
+      const data = await response.json()
+
       if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || 'Booking failed')
+        alert(data.error || 'Der opstod en fejl ved booking. Prøv igen.')
+        return
       }
 
       setBookingSubmitted(true)
     } catch (error) {
       console.error('Booking error:', error)
-      alert('Der opstod en fejl ved booking. Prøv igen.')
+      alert('Der opstod en fejl. Tjek din internetforbindelse og prøv igen.')
     } finally {
       setLoading(false)
     }
