@@ -1,16 +1,36 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X, User } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/types'
+import { createClient } from '@/lib/supabase/client'
 
-interface NavigationProps {
-  user?: { email: string; is_member: boolean } | null
-}
-
-export default function Navigation({ user }: NavigationProps) {
+export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [user, setUser] = useState<{ email: string } | null>(null)
+  const supabase = createClient()
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user: authUser } } = await supabase.auth.getUser()
+      if (authUser) {
+        setUser({ email: authUser.email || '' })
+      }
+    }
+
+    getUser()
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        setUser({ email: session.user.email || '' })
+      } else {
+        setUser(null)
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [supabase.auth])
 
   return (
     <nav className="bg-primary text-white sticky top-0 z-50">
