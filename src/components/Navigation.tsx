@@ -25,7 +25,7 @@ export default function Navigation({ user }: NavigationProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.filter(item => item.name !== 'Book nu' || user).map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -69,7 +69,7 @@ export default function Navigation({ user }: NavigationProps) {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden pb-4">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.filter(item => item.name !== 'Book nu' || user).map((item) => (
               <Link
                 key={item.name}
                 href={item.href}

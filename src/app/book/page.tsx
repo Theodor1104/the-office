@@ -298,13 +298,15 @@ export default function BookingPage() {
                 <div className="flex space-x-2">
                   <button
                     onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-                    className="p-2 hover:bg-gray-100 rounded transition-colors"
+                    disabled={isSameMonth(currentMonth, new Date())}
+                    className="p-2 hover:bg-gray-100 rounded transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft size={20} />
                   </button>
                   <button
                     onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-                    className="p-2 hover:bg-gray-100 rounded transition-colors"
+                    disabled={currentMonth > addMonths(new Date(), 11)}
+                    className="p-2 hover:bg-gray-100 rounded transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     <ChevronRight size={20} />
                   </button>
