@@ -1,65 +1,283 @@
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
+import { Mic, Users, Monitor, Clock, ArrowRight, Presentation, MapPin, Star, Coffee } from 'lucide-react'
+import { PRICING } from '@/lib/types'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div>
+      {/* Hero Section */}
+      <section className="relative bg-primary text-white min-h-[80vh] flex items-center">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/images/hero.jpg"
+          alt="The Office coworking space"
+          fill
+          className="object-cover grayscale"
           priority
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
+              Dit professionelle
+              <span className="block font-semibold">coworking space</span>
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl">
+              Book professionelt podcast studie eller mød dine kunder i vores mødelokale.
+              Bliv en del af fællesskabet med din egen kontorplads.
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/book"
+                className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded font-semibold hover:bg-gray-200 transition-colors"
+              >
+                Book nu
+                <ArrowRight className="ml-2" size={20} />
+              </Link>
+              <Link
+                href="/kontakt"
+                className="inline-flex items-center justify-center border-2 border-white/30 text-white px-8 py-4 rounded font-semibold hover:border-white transition-colors"
+              >
+                Kontakt os
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Links Section */}
+      <section className="py-12 bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link href="/podcast" className="group p-6 bg-secondary rounded-lg hover:bg-primary hover:text-white transition-all">
+              <Mic className="mb-3 text-primary group-hover:text-white" size={28} />
+              <h3 className="font-semibold">Podcast Studie</h3>
+              <p className="text-sm text-gray-600 group-hover:text-gray-300 mt-1">Fra {PRICING.podcast.guest_per_hour} kr/time</p>
+            </Link>
+            <Link href="/book" className="group p-6 bg-secondary rounded-lg hover:bg-primary hover:text-white transition-all">
+              <Presentation className="mb-3 text-primary group-hover:text-white" size={28} />
+              <h3 className="font-semibold">Mødelokale</h3>
+              <p className="text-sm text-gray-600 group-hover:text-gray-300 mt-1">{PRICING.meeting_room.guest_per_day} kr/dag</p>
+            </Link>
+            <Link href="/kontakt" className="group p-6 bg-secondary rounded-lg hover:bg-primary hover:text-white transition-all">
+              <Users className="mb-3 text-primary group-hover:text-white" size={28} />
+              <h3 className="font-semibold">Kontorplads</h3>
+              <p className="text-sm text-gray-600 group-hover:text-gray-300 mt-1">{PRICING.office.single_desk.toLocaleString('da-DK')} kr/md</p>
+            </Link>
+            <Link href="/faciliteter" className="group p-6 bg-secondary rounded-lg hover:bg-primary hover:text-white transition-all">
+              <Coffee className="mb-3 text-primary group-hover:text-white" size={28} />
+              <h3 className="font-semibold">Faciliteter</h3>
+              <p className="text-sm text-gray-600 group-hover:text-gray-300 mt-1">Se hvad vi tilbyder</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Podcast Studio Section */}
+      <section className="py-20 md:py-32 bg-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0">
+                <Image
+                  src="/images/podcast/studio-main.jpg"
+                  alt="The Office Podcast Studie"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div>
+              <span className="text-white/60 text-sm font-semibold uppercase tracking-widest">Podcast Studie</span>
+              <h2 className="mt-4 text-4xl md:text-5xl font-light leading-tight">
+                Professionel
+                <span className="block font-semibold">lydkvalitet</span>
+              </h2>
+              <p className="mt-6 text-lg text-gray-300 leading-relaxed">
+                Fuldt udstyret podcast studie med professionelle mikrofoner,
+                lydtæt rum og mulighed for video.
+              </p>
+              <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center space-x-3">
+                  <Mic className="text-white/60" size={18} />
+                  <span>Pro mikrofoner</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Monitor className="text-white/60" size={18} />
+                  <span>Video add-on</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Users className="text-white/60" size={18} />
+                  <span>Tekniker tilgængelig</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Clock className="text-white/60" size={18} />
+                  <span>Fleksibel booking</span>
+                </div>
+              </div>
+              <div className="mt-10">
+                <Link
+                  href="/podcast"
+                  className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded font-semibold hover:bg-gray-200 transition-colors"
+                >
+                  Se mere & book
+                  <ArrowRight className="ml-2" size={20} />
+                </Link>
+                <p className="mt-4 text-white/60 text-sm">Fra {PRICING.podcast.guest_per_hour} kr/time</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Office Space Section */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-primary/60 text-sm font-semibold uppercase tracking-wider">Kontorpladser</span>
+                <span className="bg-primary text-white text-xs px-3 py-1 rounded-full">Kun 4 tilbage</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-light text-primary leading-tight">
+                Bliv en del af
+                <span className="block font-semibold">fællesskabet</span>
+              </h2>
+              <p className="mt-6 text-gray-600 leading-relaxed">
+                Fast kontorplads med adgang til alle faciliteter.
+                Medlemmer booker mødelokale og podcast studie gratis.
+              </p>
+              <div className="mt-10">
+                <p className="text-3xl font-semibold text-primary">
+                  {PRICING.office.single_desk.toLocaleString('da-DK')} kr
+                  <span className="text-lg font-normal text-gray-500">/måned</span>
+                </p>
+                <Link
+                  href="/kontakt"
+                  className="inline-flex items-center mt-6 bg-primary text-white px-8 py-4 rounded font-semibold hover:bg-gray-800 transition-colors"
+                >
+                  Kontakt os
+                  <ArrowRight className="ml-2" size={20} />
+                </Link>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2 relative aspect-[4/3] rounded-lg overflow-hidden">
+              <Image
+                src="/images/office/office-main.jpg"
+                alt="Kontorpladser hos The Office"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials / Social Proof */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-primary">
+              Hvad siger vores <span className="font-semibold">medlemmer?</span>
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-secondary rounded-lg p-8">
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="text-yellow-500 fill-yellow-500" size={18} />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6">
+                &ldquo;Podcast studiet er fantastisk! Professionelt udstyr og perfekt lydkvalitet.
+                Nemt at booke og super fleksibelt.&rdquo;
+              </p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
+                  MK
+                </div>
+                <div className="ml-3">
+                  <p className="font-semibold text-primary">Maria K.</p>
+                  <p className="text-sm text-gray-500">Podcast Host</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-secondary rounded-lg p-8">
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="text-yellow-500 fill-yellow-500" size={18} />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6">
+                &ldquo;Perfekt placering tæt på metroen. Fællesskabet er fantastisk -
+                jeg har mødt flere samarbejdspartnere her.&rdquo;
+              </p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
+                  JH
+                </div>
+                <div className="ml-3">
+                  <p className="font-semibold text-primary">Jonas H.</p>
+                  <p className="text-sm text-gray-500">Freelance Udvikler</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-secondary rounded-lg p-8">
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="text-yellow-500 fill-yellow-500" size={18} />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6">
+                &ldquo;Som medlem får jeg gratis adgang til mødelokale og podcast studie.
+                Det er virkelig god value for money!&rdquo;
+              </p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
+                  SL
+                </div>
+                <div className="ml-3">
+                  <p className="font-semibold text-primary">Sara L.</p>
+                  <p className="text-sm text-gray-500">Startup Founder</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center space-x-2 text-gray-500">
+              <MapPin size={18} />
+              <span>Martensens Allé 8, Frederiksberg - 2 min fra metroen</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 md:py-32 bg-secondary">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-primary">
+            Klar til at komme <span className="font-semibold">i gang?</span>
+          </h2>
+          <p className="mt-6 text-lg text-gray-600">
+            Book podcast studie, mødelokale eller kontakt os om kontorplads.
           </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/book"
+              className="inline-flex items-center justify-center bg-primary text-white px-8 py-4 rounded font-semibold hover:bg-gray-800 transition-colors"
+            >
+              Book nu
+              <ArrowRight className="ml-2" size={20} />
+            </Link>
+            <Link
+              href="/priser"
+              className="inline-flex items-center justify-center border-2 border-primary text-primary px-8 py-4 rounded font-semibold hover:bg-primary hover:text-white transition-colors"
+            >
+              Se priser
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
-  );
+  )
 }
