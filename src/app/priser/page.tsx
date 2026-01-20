@@ -45,27 +45,27 @@ export default function PricingPage() {
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Fast skrivebord
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Ergonomisk stol
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Gratis mødelokale
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Gratis podcast studie
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Adgang til køkken & lounge
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Højhastigheds WiFi
                 </li>
               </ul>
@@ -93,27 +93,27 @@ export default function PricingPage() {
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center text-sm text-gray-300">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   4 faste skriveborde
                 </li>
                 <li className="flex items-center text-sm text-gray-300">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Privat rum
                 </li>
                 <li className="flex items-center text-sm text-gray-300">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Gratis mødelokale
                 </li>
                 <li className="flex items-center text-sm text-gray-300">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Gratis podcast studie
                 </li>
                 <li className="flex items-center text-sm text-gray-300">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Alle faciliteter inkluderet
                 </li>
                 <li className="flex items-center text-sm text-gray-300">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Mulighed for branding
                 </li>
               </ul>
@@ -155,20 +155,20 @@ export default function PricingPage() {
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Medlemspris (har kontorplads)</span>
-                  <span className="text-white font-semibold">Gratis</span>
+                  <span className="text-green-600 font-semibold">Gratis</span>
                 </div>
               </div>
               <ul className="mt-6 space-y-2">
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Plads til 8 personer
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Whiteboard & projektor
                 </li>
                 <li className="flex items-center text-sm text-gray-600">
-                  <Check className="text-white mr-2" size={16} />
+                  <Check className="text-green-600 mr-2" size={16} />
                   Kaffe & te inkluderet
                 </li>
               </ul>
@@ -208,7 +208,7 @@ export default function PricingPage() {
                 <tr className="border-b border-gray-100">
                   <td className="py-4 px-4">Time-leje</td>
                   <td className="py-4 px-4 text-right">{PRICING.podcast.guest_per_hour} kr/time</td>
-                  <td className="py-4 px-4 text-right text-white font-semibold">Gratis</td>
+                  <td className="py-4 px-4 text-right text-green-600 font-semibold">Gratis</td>
                 </tr>
                 <tr className="border-b border-gray-100 bg-accent/5">
                   <td className="py-4 px-4">
@@ -216,17 +216,17 @@ export default function PricingPage() {
                     <span className="ml-2 bg-white text-black text-xs px-2 py-0.5 rounded">Populær</span>
                   </td>
                   <td className="py-4 px-4 text-right">{PRICING.podcast.guest_3hour_package} kr</td>
-                  <td className="py-4 px-4 text-right text-white font-semibold">Gratis</td>
+                  <td className="py-4 px-4 text-right text-green-600 font-semibold">Gratis</td>
                 </tr>
                 <tr className="border-b border-gray-100">
                   <td className="py-4 px-4">Med tekniker</td>
                   <td className="py-4 px-4 text-right">{PRICING.podcast.guest_with_technician} kr/time</td>
-                  <td className="py-4 px-4 text-right text-white font-semibold">Gratis</td>
+                  <td className="py-4 px-4 text-right text-green-600 font-semibold">Gratis</td>
                 </tr>
                 <tr className="border-b border-gray-100">
                   <td className="py-4 px-4">Video add-on</td>
                   <td className="py-4 px-4 text-right">{PRICING.podcast.video_addon} kr/time</td>
-                  <td className="py-4 px-4 text-right text-white font-semibold">Gratis</td>
+                  <td className="py-4 px-4 text-right text-green-600 font-semibold">Gratis</td>
                 </tr>
                 <tr>
                   <td className="py-4 px-4">Post-production</td>
@@ -240,7 +240,7 @@ export default function PricingPage() {
           <div className="text-center mt-8">
             <Link
               href="/podcast"
-              className="inline-flex items-center text-white font-semibold hover:underline"
+              className="inline-flex items-center text-primary font-semibold hover:underline"
             >
               Læs mere om podcast studiet <ArrowRight size={16} className="ml-1" />
             </Link>

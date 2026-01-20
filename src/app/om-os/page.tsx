@@ -122,19 +122,19 @@ export default function AboutPage() {
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center text-gray-600">
-                  <span className="text-white mr-3">✓</span>
+                  <span className="text-green-600 mr-3">✓</span>
                   Månedlige netværksarrangementer
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <span className="text-white mr-3">✓</span>
+                  <span className="text-green-600 mr-3">✓</span>
                   Fælles frokost og kaffepause
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <span className="text-white mr-3">✓</span>
+                  <span className="text-green-600 mr-3">✓</span>
                   Slack-kanal for members only
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <span className="text-white mr-3">✓</span>
+                  <span className="text-green-600 mr-3">✓</span>
                   Adgang til ekspertise på tværs af brancher
                 </li>
               </ul>

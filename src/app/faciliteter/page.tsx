@@ -88,7 +88,7 @@ export default function FacilitiesPage() {
                   <ul className="mt-4 grid grid-cols-2 gap-2">
                     {facility.features.map((feature) => (
                       <li key={feature} className="flex items-center text-sm text-gray-600">
-                        <span className="text-white mr-2">✓</span>
+                        <span className="text-green-600 mr-2">✓</span>
                         {feature}
                       </li>
                     ))}
@@ -143,15 +143,15 @@ export default function FacilitiesPage() {
               </div>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center text-gray-600">
-                  <span className="text-white mr-3">✓</span>
+                  <span className="text-green-600 mr-3">✓</span>
                   2 min til Frederiksberg Metro
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <span className="text-white mr-3">✓</span>
+                  <span className="text-green-600 mr-3">✓</span>
                   Tæt på buslinjer
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <span className="text-white mr-3">✓</span>
+                  <span className="text-green-600 mr-3">✓</span>
                   Caféer og frokost i nærheden
                 </li>
               </ul>

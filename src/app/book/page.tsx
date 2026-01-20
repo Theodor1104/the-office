@@ -268,7 +268,7 @@ export default function BookingPage() {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <room.icon className={selectedRoom === room.id ? 'text-white' : 'text-gray-400'} size={24} />
+                        <room.icon className={selectedRoom === room.id ? 'text-accent' : 'text-gray-400'} size={24} />
                         <span className="ml-3 font-medium text-primary">{room.name}</span>
                       </div>
                       {selectedRoom === room.id && <Check className="text-primary" size={20} />}
@@ -277,7 +277,7 @@ export default function BookingPage() {
                       <span className="text-gray-500 flex items-center">
                         <Users size={14} className="mr-1" /> Op til {room.capacity}
                       </span>
-                      <span className={room.price === 0 ? 'text-white font-semibold' : 'text-gray-600'}>
+                      <span className={room.price === 0 ? 'text-green-600 font-semibold' : 'text-gray-600'}>
                         {room.price === 0 ? 'Gratis' : `${room.price} kr`}
                       </span>
                     </div>
@@ -413,7 +413,7 @@ export default function BookingPage() {
                       </p>
                       <p>
                         <span className="text-gray-500">Pris:</span>{' '}
-                        <span className={`font-medium ${rooms.find(r => r.id === selectedRoom)?.price === 0 ? 'text-white' : ''}`}>
+                        <span className={`font-medium ${rooms.find(r => r.id === selectedRoom)?.price === 0 ? 'text-green-600' : ''}`}>
                           {rooms.find(r => r.id === selectedRoom)?.price === 0
                             ? 'Gratis (medlem)'
                             : `${rooms.find(r => r.id === selectedRoom)?.price} kr`}
