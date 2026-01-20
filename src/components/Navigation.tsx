@@ -5,6 +5,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { Menu, X, User } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/types'
 import { createClient } from '@/lib/supabase/client'
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -32,8 +33,7 @@ export default function Navigation() {
 
     checkSession()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('Auth state changed:', event, session?.user?.email)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: AuthChangeEvent, session: Session | null) => {
       if (session?.user) {
         setUser({ email: session.user.email || '' })
       } else {
