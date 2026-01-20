@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Menu, X, User } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/types'
 import { createClient } from '@/lib/supabase/client'
@@ -9,13 +9,23 @@ import { createClient } from '@/lib/supabase/client'
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [user, setUser] = useState<{ email: string } | null>(null)
-  const supabase = createClient()
+  const [isLoading, setIsLoading] = useState(true)
+  const supabase = useMemo(() => createClient(), [])
 
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user: authUser } } = await supabase.auth.getUser()
-      if (authUser) {
-        setUser({ email: authUser.email || '' })
+      try {
+        const { data: { user: authUser } } = await supabase.auth.getUser()
+        if (authUser) {
+          setUser({ email: authUser.email || '' })
+        } else {
+          setUser(null)
+        }
+      } catch (error) {
+        console.error('Error getting user:', error)
+        setUser(null)
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -30,7 +40,7 @@ export default function Navigation() {
     })
 
     return () => subscription.unsubscribe()
-  }, [supabase.auth])
+  }, [supabase])
 
   return (
     <nav className="bg-primary text-white sticky top-0 z-50">
@@ -58,7 +68,9 @@ export default function Navigation() {
 
           {/* Auth Button */}
           <div className="hidden md:flex items-center space-x-4">
-            {user ? (
+            {isLoading ? (
+              <div className="w-24 h-10" />
+            ) : user ? (
               <Link
                 href="/min-side"
                 className="flex items-center space-x-2 bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition-colors"
@@ -100,7 +112,7 @@ export default function Navigation() {
               </Link>
             ))}
             <div className="pt-4 border-t border-white/20 mt-4">
-              {user ? (
+              {!isLoading && (user ? (
                 <Link
                   href="/min-side"
                   className="flex items-center space-x-2 text-white"
@@ -117,7 +129,7 @@ export default function Navigation() {
                 >
                   Log ind
                 </Link>
-              )}
+              ))}
             </div>
           </div>
         )}
