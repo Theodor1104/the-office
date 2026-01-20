@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { NextResponse } from 'next/server'
 
 const PRIMARY_ADMIN_EMAIL = 'theodorhauch@gmail.com'
@@ -23,8 +24,11 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  // Use admin client to bypass RLS
+  const adminClient = createAdminClient()
+
   // Get all bookings with user and room info
-  const { data: bookings, error } = await supabase
+  const { data: bookings, error } = await adminClient
     .from('bookings')
     .select(`
       *,
@@ -56,7 +60,10 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
   }
 
-  const { error } = await supabase
+  // Use admin client to bypass RLS
+  const adminClient = createAdminClient()
+
+  const { error } = await adminClient
     .from('bookings')
     .update({ status })
     .eq('id', bookingId)
@@ -80,7 +87,10 @@ export async function DELETE(request: Request) {
 
   const { bookingId } = await request.json()
 
-  const { error } = await supabase
+  // Use admin client to bypass RLS
+  const adminClient = createAdminClient()
+
+  const { error } = await adminClient
     .from('bookings')
     .delete()
     .eq('id', bookingId)

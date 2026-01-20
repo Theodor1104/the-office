@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
@@ -157,7 +158,10 @@ export async function DELETE(request: Request) {
   }
 
   // Cancel the booking (set status to cancelled instead of deleting)
-  const { error: updateError } = await supabase
+  // Use admin client to bypass RLS after ownership is verified
+  const adminClient = createAdminClient()
+
+  const { error: updateError } = await adminClient
     .from('bookings')
     .update({ status: 'cancelled' })
     .eq('id', bookingId)
