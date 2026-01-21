@@ -27,6 +27,7 @@ interface UserData {
 interface BookingData {
   id: string
   start_time: string
+  end_time: string
   rooms: { type: string; name: string }
   profiles: { full_name: string }
 }
@@ -97,6 +98,29 @@ export default function BookingPage() {
     '14:00 - 17:00',
     '17:00 - 20:00',
   ]
+
+  // Check if a specific time slot is booked for the selected date and room
+  const isTimeSlotBooked = (slot: string, date: Date) => {
+    const [startHour] = slot.split(' - ')[0].split(':')
+    const [endHour] = slot.split(' - ')[1].split(':')
+
+    const slotStart = new Date(date)
+    slotStart.setHours(parseInt(startHour), 0, 0, 0)
+
+    const slotEnd = new Date(date)
+    slotEnd.setHours(parseInt(endHour), 0, 0, 0)
+
+    // Check if any booking overlaps with this time slot for the selected room
+    return bookings.some(booking => {
+      if (booking.rooms?.type !== selectedRoom) return false
+
+      const bookingStart = new Date(booking.start_time)
+      const bookingEnd = new Date(booking.end_time)
+
+      // Check for overlap: slot overlaps if it starts before booking ends AND ends after booking starts
+      return slotStart < bookingEnd && slotEnd > bookingStart
+    })
+  }
 
   const handleBooking = async () => {
     if (!user) {
@@ -394,19 +418,26 @@ export default function BookingPage() {
                   Vælg tidspunkt - {format(selectedDate, "d. MMMM", { locale: da })}
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {timeSlots.map((slot) => (
-                    <button
-                      key={slot}
-                      onClick={() => setSelectedTime(slot)}
-                      className={`p-3 rounded border-2 transition-all ${
-                        selectedTime === slot
-                          ? 'border-accent bg-accent/5 text-primary'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      {slot}
-                    </button>
-                  ))}
+                  {timeSlots.map((slot) => {
+                    const isBooked = isTimeSlotBooked(slot, selectedDate)
+                    return (
+                      <button
+                        key={slot}
+                        onClick={() => !isBooked && setSelectedTime(slot)}
+                        disabled={isBooked}
+                        className={`p-3 rounded border-2 transition-all ${
+                          isBooked
+                            ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
+                            : selectedTime === slot
+                            ? 'border-accent bg-accent/5 text-primary'
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                      >
+                        {slot}
+                        {isBooked && <span className="block text-xs text-red-400 mt-1">Optaget</span>}
+                      </button>
+                    )
+                  })}
                 </div>
 
                 {/* Booking summary */}
