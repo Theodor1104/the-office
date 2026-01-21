@@ -163,29 +163,31 @@ export default function PodcastPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
             {packages.map((pkg) => (
               <div
                 key={pkg.name}
-                className={`bg-white rounded-lg p-8 ${
+                className={`bg-white rounded-lg p-8 flex flex-col ${
                   pkg.popular ? 'ring-2 ring-accent shadow-lg' : 'shadow'
                 }`}
               >
-                {pkg.popular && (
-                  <span className="bg-white text-black text-xs font-semibold px-3 py-1 rounded-full">
-                    Mest populær
-                  </span>
-                )}
-                <h3 className="mt-4 text-xl font-semibold text-primary">{pkg.name}</h3>
+                <div className="h-6">
+                  {pkg.popular && (
+                    <span className="bg-gray-100 text-black text-xs font-semibold px-3 py-1 rounded-full">
+                      Mest populær
+                    </span>
+                  )}
+                </div>
+                <h3 className="mt-2 text-xl font-semibold text-primary">{pkg.name}</h3>
                 <div className="mt-4">
                   <span className="text-4xl font-bold text-primary">{pkg.price}</span>
                   <span className="text-gray-500"> kr{pkg.unit}</span>
                 </div>
-                <p className="mt-4 text-gray-600">{pkg.description}</p>
-                <ul className="mt-6 space-y-3">
+                <p className="mt-4 text-gray-600 min-h-[48px]">{pkg.description}</p>
+                <ul className="mt-6 space-y-3 flex-grow">
                   {pkg.features.map((feature) => (
                     <li key={feature} className="flex items-center text-sm text-gray-600">
-                      <Check className="text-white mr-2 flex-shrink-0" size={16} />
+                      <Check className="text-green-500 mr-2 flex-shrink-0" size={16} />
                       {feature}
                     </li>
                   ))}
@@ -194,7 +196,7 @@ export default function PodcastPage() {
                   href="/book"
                   className={`mt-8 block text-center py-3 rounded font-semibold transition-colors ${
                     pkg.popular
-                      ? 'bg-white text-black hover:bg-gray-200'
+                      ? 'bg-primary text-white hover:bg-primary/90'
                       : 'bg-primary text-white hover:bg-primary/90'
                   }`}
                 >
@@ -248,7 +250,7 @@ export default function PodcastPage() {
               <ul className="mt-8 space-y-3">
                 {equipment.map((item) => (
                   <li key={item} className="flex items-center text-gray-600">
-                    <Check className="text-white mr-3 flex-shrink-0" size={18} />
+                    <Check className="text-green-500 mr-3 flex-shrink-0" size={18} />
                     {item}
                   </li>
                 ))}
@@ -263,7 +265,7 @@ export default function PodcastPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="flex items-start space-x-4">
-              <Clock className="text-white flex-shrink-0" size={24} />
+              <Clock className="text-primary flex-shrink-0" size={24} />
               <div>
                 <h3 className="font-semibold text-primary">Fleksibel booking</h3>
                 <p className="mt-1 text-sm text-gray-600">
@@ -272,7 +274,7 @@ export default function PodcastPage() {
               </div>
             </div>
             <div className="flex items-start space-x-4">
-              <Users className="text-white flex-shrink-0" size={24} />
+              <Users className="text-primary flex-shrink-0" size={24} />
               <div>
                 <h3 className="font-semibold text-primary">Plads til gæster</h3>
                 <p className="mt-1 text-sm text-gray-600">
@@ -281,7 +283,7 @@ export default function PodcastPage() {
               </div>
             </div>
             <div className="flex items-start space-x-4">
-              <Settings className="text-white flex-shrink-0" size={24} />
+              <Settings className="text-primary flex-shrink-0" size={24} />
               <div>
                 <h3 className="font-semibold text-primary">Support inkluderet</h3>
                 <p className="mt-1 text-sm text-gray-600">
