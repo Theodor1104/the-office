@@ -37,6 +37,7 @@ export default function AdminPage() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [updating, setUpdating] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'users' | 'bookings'>('bookings')
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const supabase = createClient()
 
@@ -94,12 +95,18 @@ export default function AdminPage() {
   const fetchBookings = async () => {
     try {
       const response = await fetch('/api/admin/bookings')
+      const data = await response.json()
+
       if (response.ok) {
-        const data = await response.json()
         setBookings(data)
+        setError(null)
+      } else {
+        console.error('API error:', data)
+        setError(data.error || 'Kunne ikke hente bookinger')
       }
-    } catch (error) {
-      console.error('Failed to fetch bookings:', error)
+    } catch (err) {
+      console.error('Failed to fetch bookings:', err)
+      setError('Netværksfejl - kunne ikke hente bookinger')
     }
   }
 
@@ -274,6 +281,11 @@ export default function AdminPage() {
                 <Calendar className="mr-2" size={20} />
                 Alle bookinger
               </h2>
+              {error && (
+                <div className="mt-4 p-3 bg-red-100 text-red-700 rounded text-sm">
+                  Fejl: {error}
+                </div>
+              )}
             </div>
 
             <div className="overflow-x-auto">

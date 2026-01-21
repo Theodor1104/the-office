@@ -24,24 +24,30 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Use admin client to bypass RLS
-  const adminClient = createAdminClient()
+  try {
+    // Use admin client to bypass RLS
+    const adminClient = createAdminClient()
 
-  // Get all bookings with user and room info
-  const { data: bookings, error } = await adminClient
-    .from('bookings')
-    .select(`
-      *,
-      profiles:user_id (full_name, email, phone, is_member),
-      rooms:room_id (name, type)
-    `)
-    .order('created_at', { ascending: false })
+    // Get all bookings with user and room info
+    const { data: bookings, error } = await adminClient
+      .from('bookings')
+      .select(`
+        *,
+        profiles:user_id (full_name, email, phone, is_member),
+        rooms:room_id (name, type)
+      `)
+      .order('created_at', { ascending: false })
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    if (error) {
+      console.error('Admin bookings fetch error:', error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json(bookings)
+  } catch (err) {
+    console.error('Admin client error:', err)
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
   }
-
-  return NextResponse.json(bookings)
 }
 
 // Update booking status (approve/reject)
