@@ -1,6 +1,16 @@
 import Link from 'next/link'
 import { ArrowRight, Check, Star } from 'lucide-react'
 import { PRICING } from '@/lib/types'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Priser - Kontorplads, Mødelokale & Podcast Studie',
+  description: 'Se priser for kontorplads fra 3.500 kr/md, mødelokale fra 750 kr/dag og podcast studie fra 399 kr/time. Medlemmer booker gratis. Ingen binding.',
+  keywords: ['kontorplads pris', 'mødelokale pris København', 'podcast studie pris', 'coworking priser Frederiksberg'],
+  alternates: {
+    canonical: 'https://theofficeee.netlify.app/priser',
+  },
+}
 
 export default function PricingPage() {
   return (

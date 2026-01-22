@@ -11,6 +11,20 @@ import {
   Check
 } from 'lucide-react'
 import { PRICING } from '@/lib/types'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Podcast Studie til Leje i København | Book Nu',
+  description: 'Lej professionelt podcast studie i Frederiksberg fra 399 kr/time. Alt udstyr inkluderet, lydtæt rum, tekniker tilgængelig. Book dit studie i dag!',
+  keywords: ['podcast studie leje', 'podcast studie København', 'lej podcast rum', 'podcast optagelse Frederiksberg', 'podcast udstyr leje'],
+  alternates: {
+    canonical: 'https://theofficeee.netlify.app/podcast',
+  },
+  openGraph: {
+    title: 'Podcast Studie til Leje | The Office Frederiksberg',
+    description: 'Professionelt podcast studie med alt udstyr inkluderet. Fra 399 kr/time. Book nu!',
+  },
+}
 
 export default function PodcastPage() {
   const packages = [

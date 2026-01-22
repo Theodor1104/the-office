@@ -2,6 +2,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Mic, Users, Monitor, Clock, ArrowRight, Presentation, Coffee } from 'lucide-react'
 import { PRICING } from '@/lib/types'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Coworking & Podcast Studio i Frederiksberg | The Office',
+  description: 'The Office er dit professionelle coworking space i Frederiksberg. Lej kontorplads, book mødelokale eller optag podcast i vores studie. 2 min fra metroen. Book i dag!',
+  keywords: ['coworking Frederiksberg', 'kontorfællesskab København', 'podcast studie', 'mødelokale leje', 'kontorplads Frederiksberg'],
+  alternates: {
+    canonical: 'https://theofficeee.netlify.app',
+  },
+}
 
 export default function Home() {
   return (

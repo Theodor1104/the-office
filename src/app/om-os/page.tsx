@@ -1,4 +1,13 @@
 import { Users, Heart, Handshake, Target } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Om os - Coworking Fællesskab',
+  description: 'Lær mere om The Office Frederiksberg. Vi er et fællesskab af ambitiøse mennesker der arbejder sammen. Moderne kontorplads, podcast studie og mødelokaler.',
+  alternates: {
+    canonical: 'https://theofficeee.netlify.app/om-os',
+  },
+}
 
 export default function AboutPage() {
   return (

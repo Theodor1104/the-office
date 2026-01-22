@@ -11,6 +11,16 @@ import {
   UtensilsCrossed,
   ArrowRight
 } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Faciliteter - Mødelokale, Podcast Studie & Mere',
+  description: 'Oplev vores moderne faciliteter: Professionelt mødelokale til 8 personer, lydtæt podcast studie, højhastigheds WiFi, køkken og lounge. Alt inkluderet.',
+  keywords: ['coworking faciliteter', 'mødelokale Frederiksberg', 'podcast studie København', 'kontorfællesskab faciliteter'],
+  alternates: {
+    canonical: 'https://theofficeee.netlify.app/faciliteter',
+  },
+}
 
 export default function FacilitiesPage() {
   const facilities = [
