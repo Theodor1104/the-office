@@ -170,7 +170,7 @@ export default function MyPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-gray-600">Indlæser...</p>
+          <p className="mt-4 text-warm-gray">Indlæser...</p>
         </div>
       </div>
     )
@@ -182,10 +182,10 @@ export default function MyPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-light text-primary">
+            <h1 className="text-3xl font-serif text-primary">
               Velkommen, <span className="font-semibold">{user?.full_name}</span>
             </h1>
-            <p className="mt-1 text-gray-600">
+            <p className="mt-1 text-warm-gray">
               {user?.is_member ? (
                 <span className="flex items-center text-green-600">
                   <Star size={16} className="mr-1 fill-green-600" /> Medlem - gratis booking
@@ -197,7 +197,7 @@ export default function MyPage() {
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center text-gray-600 hover:text-primary transition-colors"
+            className="flex items-center text-warm-gray hover:text-primary transition-colors"
           >
             <LogOut size={20} className="mr-2" />
             Log ud
@@ -207,33 +207,33 @@ export default function MyPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Profil */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white rounded-xl shadow p-6">
               <h2 className="text-lg font-semibold text-primary mb-4 flex items-center">
-                <User className="mr-2 text-primary" size={20} />
+                <User className="mr-2 text-accent" size={20} />
                 Min profil
               </h2>
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm text-gray-500">Email</label>
+                  <label className="text-sm text-warm-gray">Email</label>
                   <p className="font-medium">{user?.email}</p>
                 </div>
                 <div>
-                  <label className="text-sm text-gray-500">Navn</label>
+                  <label className="text-sm text-warm-gray">Navn</label>
                   <p className="font-medium">{user?.full_name}</p>
                 </div>
                 {user?.phone && (
                   <div>
-                    <label className="text-sm text-gray-500">Telefon</label>
+                    <label className="text-sm text-warm-gray">Telefon</label>
                     <p className="font-medium">{user.phone}</p>
                   </div>
                 )}
                 <div>
-                  <label className="text-sm text-gray-500">Status</label>
+                  <label className="text-sm text-warm-gray">Status</label>
                   <p className="font-medium">
                     {user?.is_member ? (
                       <span className="text-green-600">Medlem (kontorplads)</span>
                     ) : (
-                      <span className="text-gray-600">Gæst</span>
+                      <span className="text-warm-gray">Gæst</span>
                     )}
                   </p>
                 </div>
@@ -241,8 +241,8 @@ export default function MyPage() {
 
               {!user?.is_member && (
                 <div className="mt-6 p-4 bg-secondary/30 rounded">
-                  <p className="text-sm text-gray-600">
-                    Interesseret i en kontorplads? Som medlem får du gratis adgang til mødelokale og podcast studie.
+                  <p className="text-sm text-warm-gray">
+                    Interesseret i en kontorplads? Som medlem får du gratis adgang til mødelokale.
                   </p>
                   <Link
                     href="/kontakt"
@@ -257,17 +257,17 @@ export default function MyPage() {
 
           {/* Bookinger */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white rounded-xl shadow p-6">
               <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-2">
                   <h2 className="text-lg font-semibold text-primary flex items-center">
-                    <Calendar className="mr-2 text-primary" size={20} />
+                    <Calendar className="mr-2 text-accent" size={20} />
                     Mine bookinger
                   </h2>
                   <button
                     onClick={refreshBookings}
                     disabled={refreshing}
-                    className="p-1 text-gray-400 hover:text-primary transition-colors disabled:opacity-50"
+                    className="p-1 text-accent-light hover:text-primary transition-colors disabled:opacity-50"
                     title="Opdater bookinger"
                   >
                     <RefreshCw size={16} className={refreshing ? 'animate-spin' : ''} />
@@ -275,7 +275,7 @@ export default function MyPage() {
                 </div>
                 <Link
                   href="/book"
-                  className="flex items-center bg-white text-black px-4 py-2 rounded font-medium hover:bg-gray-200 transition-colors"
+                  className="flex items-center bg-secondary text-primary px-4 py-2 rounded-lg font-medium hover:bg-accent-light/30 transition-colors"
                 >
                   <Plus size={18} className="mr-1" />
                   Ny booking
@@ -283,7 +283,7 @@ export default function MyPage() {
               </div>
 
               {bookings.length === 0 ? (
-                <div className="text-center py-12 text-gray-500">
+                <div className="text-center py-12 text-warm-gray">
                   <Calendar size={48} className="mx-auto mb-4 opacity-50" />
                   <p>Du har ingen kommende bookinger</p>
                   <Link href="/book" className="text-primary font-semibold hover:underline mt-2 inline-block">
@@ -295,12 +295,12 @@ export default function MyPage() {
                   {bookings.map((booking) => (
                     <div
                       key={booking.id}
-                      className="border border-gray-200 rounded-lg p-4 hover:border-accent transition-colors"
+                      className="border border-accent-light/30 rounded-lg p-4 hover:border-accent transition-colors"
                     >
                       <div className="flex justify-between items-start">
                         <div>
                           <h3 className="font-semibold text-primary">{booking.room_name}</h3>
-                          <div className="flex items-center text-sm text-gray-600 mt-1">
+                          <div className="flex items-center text-sm text-warm-gray mt-1">
                             <Clock size={14} className="mr-1" />
                             {format(new Date(booking.start_time), "d. MMMM yyyy 'kl.' HH:mm", { locale: da })}
                             {' - '}
@@ -334,7 +334,7 @@ export default function MyPage() {
                       </div>
                       {/* Cancel button - only show for non-cancelled bookings at least 48h away */}
                       {booking.status !== 'cancelled' && canCancelBooking(booking.start_time) && (
-                        <div className="mt-3 pt-3 border-t border-gray-100">
+                        <div className="mt-3 pt-3 border-t border-accent-light/20">
                           <button
                             onClick={() => cancelBooking(booking.id)}
                             disabled={cancelling === booking.id}
@@ -342,14 +342,14 @@ export default function MyPage() {
                           >
                             {cancelling === booking.id ? 'Aflyser...' : 'Aflys booking'}
                           </button>
-                          <span className="text-xs text-gray-400 ml-2">
+                          <span className="text-xs text-accent-light ml-2">
                             (gratis afbestilling op til 48 timer før)
                           </span>
                         </div>
                       )}
                       {booking.status !== 'cancelled' && !canCancelBooking(booking.start_time) && (
-                        <div className="mt-3 pt-3 border-t border-gray-100">
-                          <span className="text-xs text-gray-400">
+                        <div className="mt-3 pt-3 border-t border-accent-light/20">
+                          <span className="text-xs text-accent-light">
                             Kan ikke aflyses mindre end 48 timer før
                           </span>
                         </div>
@@ -361,12 +361,12 @@ export default function MyPage() {
             </div>
 
             {/* Alle bookinger oversigt */}
-            <div className="bg-white rounded-lg shadow p-6 mt-8">
+            <div className="bg-white rounded-xl shadow p-6 mt-8">
               <h2 className="text-lg font-semibold text-primary mb-4 flex items-center">
-                <MapPin className="mr-2 text-primary" size={20} />
+                <MapPin className="mr-2 text-accent" size={20} />
                 Lokaleoversigt - alle bookinger
               </h2>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-warm-gray mb-4">
                 Se hvornår lokalerne er booket af andre
               </p>
               <Link

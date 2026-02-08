@@ -8,7 +8,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
-  Mic,
   Presentation,
   Users,
   Check,
@@ -37,7 +36,7 @@ export default function BookingPage() {
   const [loading, setLoading] = useState(true)
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  const [selectedRoom, setSelectedRoom] = useState<'meeting' | 'podcast'>('meeting')
+  const [selectedRoom, setSelectedRoom] = useState<'meeting'>('meeting')
   const [selectedTime, setSelectedTime] = useState('')
   const [bookingSubmitted, setBookingSubmitted] = useState(false)
   const [bookings, setBookings] = useState<BookingData[]>([])
@@ -177,13 +176,6 @@ export default function BookingPage() {
       price: user?.is_member ? 0 : PRICING.meeting_room.guest_per_day,
       capacity: 8,
     },
-    {
-      id: 'podcast' as const,
-      name: 'Podcast Studie',
-      icon: Mic,
-      price: user?.is_member ? 0 : PRICING.podcast.guest_3hour_package,
-      capacity: 4,
-    },
   ]
 
   if (loading) {
@@ -197,15 +189,15 @@ export default function BookingPage() {
   if (bookingSubmitted) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+        <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 text-center">
           {user?.is_member ? (
             <>
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="text-green-600" size={40} />
               </div>
               <h1 className="text-2xl font-semibold text-primary">Booking bekræftet!</h1>
-              <p className="mt-4 text-gray-600">
-                Din booking af {selectedRoom === 'meeting' ? 'mødelokalet' : 'podcast studiet'} den{' '}
+              <p className="mt-4 text-warm-gray">
+                Din booking af mødelokalet den{' '}
                 {selectedDate && format(selectedDate, "d. MMMM yyyy", { locale: da })} kl. {selectedTime} er bekræftet.
               </p>
             </>
@@ -215,8 +207,8 @@ export default function BookingPage() {
                 <Clock className="text-yellow-600" size={40} />
               </div>
               <h1 className="text-2xl font-semibold text-primary">Booking modtaget!</h1>
-              <p className="mt-4 text-gray-600">
-                Din booking af {selectedRoom === 'meeting' ? 'mødelokalet' : 'podcast studiet'} den{' '}
+              <p className="mt-4 text-warm-gray">
+                Din booking af mødelokalet den{' '}
                 {selectedDate && format(selectedDate, "d. MMMM yyyy", { locale: da })} kl. {selectedTime} afventer godkendelse.
               </p>
               <p className="mt-4 text-sm text-yellow-700 bg-yellow-50 p-3 rounded">
@@ -227,7 +219,7 @@ export default function BookingPage() {
           <div className="mt-8 space-y-3">
             <Link
               href="/min-side"
-              className="block w-full bg-primary text-white py-3 rounded font-semibold hover:bg-primary/90 transition-colors"
+              className="block w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
             >
               Se mine bookinger
             </Link>
@@ -237,7 +229,7 @@ export default function BookingPage() {
                 setSelectedDate(null)
                 setSelectedTime('')
               }}
-              className="block w-full border border-gray-300 text-gray-700 py-3 rounded font-semibold hover:bg-gray-50 transition-colors"
+              className="block w-full border border-accent-light/50 text-primary py-3 rounded-lg font-semibold hover:bg-surface transition-colors"
             >
               Lav ny booking
             </button>
@@ -252,10 +244,10 @@ export default function BookingPage() {
       {/* Hero */}
       <section className="bg-primary text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-light">
+          <h1 className="text-3xl md:text-4xl font-serif">
             Book <span className="font-semibold">lokale</span>
           </h1>
-          <p className="mt-4 text-gray-300">
+          <p className="mt-4 text-accent-light">
             {user ? (
               user.is_member ? (
                 <span className="text-white">Du er medlem - alle bookinger er gratis!</span>
@@ -288,9 +280,9 @@ export default function BookingPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Room Selection */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white rounded-xl shadow p-6">
               <h2 className="text-lg font-semibold text-primary mb-4 flex items-center">
-                <CalendarIcon className="mr-2 text-primary" size={20} />
+                <CalendarIcon className="mr-2 text-accent" size={20} />
                 Vælg lokale
               </h2>
 
@@ -302,21 +294,21 @@ export default function BookingPage() {
                     className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
                       selectedRoom === room.id
                         ? 'border-accent bg-accent/5'
-                        : 'border-gray-200 hover:border-gray-300'
+                        : 'border-accent-light/30 hover:border-accent-light'
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <room.icon className={selectedRoom === room.id ? 'text-accent' : 'text-gray-400'} size={24} />
+                        <room.icon className={selectedRoom === room.id ? 'text-accent' : 'text-accent-light'} size={24} />
                         <span className="ml-3 font-medium text-primary">{room.name}</span>
                       </div>
                       {selectedRoom === room.id && <Check className="text-primary" size={20} />}
                     </div>
                     <div className="mt-2 flex items-center justify-between text-sm">
-                      <span className="text-gray-500 flex items-center">
+                      <span className="text-warm-gray flex items-center">
                         <Users size={14} className="mr-1" /> Op til {room.capacity}
                       </span>
-                      <span className={room.price === 0 ? 'text-green-600 font-semibold' : 'text-gray-600'}>
+                      <span className={room.price === 0 ? 'text-green-600 font-semibold' : 'text-warm-gray'}>
                         {room.price === 0 ? 'Gratis' : `${room.price} kr`}
                       </span>
                     </div>
@@ -328,7 +320,7 @@ export default function BookingPage() {
 
           {/* Calendar */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white rounded-xl shadow p-6">
               {/* Calendar Header */}
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-primary capitalize">
@@ -338,14 +330,14 @@ export default function BookingPage() {
                   <button
                     onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
                     disabled={isSameMonth(currentMonth, new Date())}
-                    className="p-2 hover:bg-gray-100 rounded transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="p-2 hover:bg-surface rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft size={20} />
                   </button>
                   <button
                     onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
                     disabled={currentMonth > addMonths(new Date(), 11)}
-                    className="p-2 hover:bg-gray-100 rounded transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="p-2 hover:bg-surface rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     <ChevronRight size={20} />
                   </button>
@@ -355,7 +347,7 @@ export default function BookingPage() {
               {/* Weekday headers */}
               <div className="grid grid-cols-7 gap-1 mb-2">
                 {['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn'].map((day) => (
-                  <div key={day} className="text-center text-sm font-medium text-gray-500 py-2">
+                  <div key={day} className="text-center text-sm font-medium text-warm-gray py-2">
                     {day}
                   </div>
                 ))}
@@ -380,12 +372,12 @@ export default function BookingPage() {
                       disabled={isPast}
                       className={`aspect-square p-1 rounded-lg transition-all relative ${
                         isPast
-                          ? 'text-gray-300 cursor-not-allowed'
+                          ? 'text-accent-light/50 cursor-not-allowed'
                           : selectedDate && isSameDay(day, selectedDate)
                           ? 'bg-accent text-white font-semibold'
                           : isToday(day)
-                          ? 'text-primary font-semibold hover:bg-gray-100'
-                          : 'text-gray-700 hover:bg-gray-100'
+                          ? 'text-primary font-semibold hover:bg-surface'
+                          : 'text-foreground hover:bg-surface'
                       }`}
                     >
                       <span className="text-sm">{format(day, 'd')}</span>
@@ -398,7 +390,7 @@ export default function BookingPage() {
               </div>
 
               {/* Legend */}
-              <div className="mt-4 flex items-center space-x-4 text-xs text-gray-500">
+              <div className="mt-4 flex items-center space-x-4 text-xs text-warm-gray">
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-red-400 rounded-full mr-1" />
                   Optaget
@@ -412,9 +404,9 @@ export default function BookingPage() {
 
             {/* Time Selection */}
             {selectedDate && (
-              <div className="mt-6 bg-white rounded-lg shadow p-6">
+              <div className="mt-6 bg-white rounded-xl shadow p-6">
                 <h3 className="font-semibold text-primary mb-4 flex items-center">
-                  <Clock className="mr-2 text-primary" size={20} />
+                  <Clock className="mr-2 text-accent" size={20} />
                   Vælg tidspunkt - {format(selectedDate, "d. MMMM", { locale: da })}
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -427,10 +419,10 @@ export default function BookingPage() {
                         disabled={isBooked}
                         className={`p-3 rounded border-2 transition-all ${
                           isBooked
-                            ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
+                            ? 'border-accent-light/30 bg-surface text-accent-light cursor-not-allowed'
                             : selectedTime === slot
                             ? 'border-accent bg-accent/5 text-primary'
-                            : 'border-gray-200 hover:border-gray-300'
+                            : 'border-accent-light/30 hover:border-accent-light'
                         }`}
                       >
                         {slot}
@@ -446,19 +438,19 @@ export default function BookingPage() {
                     <h4 className="font-semibold text-primary mb-3">Din booking</h4>
                     <div className="space-y-2 text-sm">
                       <p>
-                        <span className="text-gray-500">Lokale:</span>{' '}
-                        <span className="font-medium">{selectedRoom === 'meeting' ? 'Mødelokale' : 'Podcast Studie'}</span>
+                        <span className="text-warm-gray">Lokale:</span>{' '}
+                        <span className="font-medium">Mødelokale</span>
                       </p>
                       <p>
-                        <span className="text-gray-500">Dato:</span>{' '}
+                        <span className="text-warm-gray">Dato:</span>{' '}
                         <span className="font-medium">{format(selectedDate, "d. MMMM yyyy", { locale: da })}</span>
                       </p>
                       <p>
-                        <span className="text-gray-500">Tid:</span>{' '}
+                        <span className="text-warm-gray">Tid:</span>{' '}
                         <span className="font-medium">{selectedTime}</span>
                       </p>
                       <p>
-                        <span className="text-gray-500">Pris:</span>{' '}
+                        <span className="text-warm-gray">Pris:</span>{' '}
                         <span className={`font-medium ${rooms.find(r => r.id === selectedRoom)?.price === 0 ? 'text-green-600' : ''}`}>
                           {rooms.find(r => r.id === selectedRoom)?.price === 0
                             ? 'Gratis (medlem)'
@@ -469,11 +461,11 @@ export default function BookingPage() {
                     <button
                       onClick={handleBooking}
                       disabled={!user}
-                      className="mt-4 w-full bg-white text-black py-3 rounded font-semibold hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="mt-4 w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {user ? 'Bekræft booking' : 'Log ind for at booke'}
                     </button>
-                    <p className="mt-2 text-xs text-gray-500 text-center">
+                    <p className="mt-2 text-xs text-warm-gray text-center">
                       Gratis afbestilling op til 48 timer før
                     </p>
                   </div>
@@ -482,30 +474,26 @@ export default function BookingPage() {
             )}
 
             {/* All bookings overview */}
-            <div className="mt-6 bg-white rounded-lg shadow p-6">
+            <div className="mt-6 bg-white rounded-xl shadow p-6">
               <h3 className="font-semibold text-primary mb-4">Kommende bookinger</h3>
               <div className="space-y-3">
                 {bookings.length === 0 ? (
-                  <p className="text-gray-500 text-sm">Ingen kommende bookinger</p>
+                  <p className="text-warm-gray text-sm">Ingen kommende bookinger</p>
                 ) : (
                   bookings.slice(0, 5).map((booking) => (
-                    <div key={booking.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+                    <div key={booking.id} className="flex items-center justify-between py-2 border-b border-accent-light/20 last:border-0">
                       <div className="flex items-center">
-                        {booking.rooms?.type === 'meeting' ? (
-                          <Presentation className="text-gray-400 mr-3" size={18} />
-                        ) : (
-                          <Mic className="text-gray-400 mr-3" size={18} />
-                        )}
+                        <Presentation className="text-accent-light mr-3" size={18} />
                         <div>
                           <p className="text-sm font-medium text-primary">
                             {booking.rooms?.name || 'Ukendt lokale'}
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-warm-gray">
                             {format(new Date(booking.start_time), "d. MMMM 'kl.' HH:mm", { locale: da })}
                           </p>
                         </div>
                       </div>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-warm-gray">
                         {booking.profiles?.full_name || 'Anonym'}
                       </span>
                     </div>

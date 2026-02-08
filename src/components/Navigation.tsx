@@ -51,7 +51,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-light tracking-wider">
+            <span className="text-2xl font-serif tracking-wider">
               The <span className="font-semibold">Office</span>
             </span>
           </Link>
@@ -62,7 +62,7 @@ export default function Navigation() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium hover:text-white transition-colors duration-200"
+                className="text-sm font-medium text-white/80 hover:text-white tracking-wide transition-colors duration-200"
               >
                 {item.name}
               </Link>
@@ -76,7 +76,7 @@ export default function Navigation() {
             ) : user ? (
               <Link
                 href="/min-side"
-                className="flex items-center space-x-2 bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition-colors"
+                className="flex items-center space-x-2 bg-secondary text-primary px-4 py-2 rounded-lg hover:bg-white transition-colors"
               >
                 <User size={18} />
                 <span className="text-sm font-medium">Min side</span>
@@ -84,7 +84,7 @@ export default function Navigation() {
             ) : (
               <Link
                 href="/login"
-                className="bg-white text-black px-6 py-2 rounded font-medium hover:bg-gray-200 transition-colors"
+                className="bg-secondary text-primary px-6 py-2 rounded-lg font-medium hover:bg-white transition-colors"
               >
                 Log ind
               </Link>
@@ -114,7 +114,7 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
-            <div className="pt-4 border-t border-white/20 mt-4">
+            <div className="pt-4 border-t border-accent-light/30 mt-4">
               {!isLoading && (user ? (
                 <Link
                   href="/min-side"

@@ -5,7 +5,7 @@ export default function StructuredData() {
     '@id': 'https://theofficeee.netlify.app/#business',
     name: 'The Office Frederiksberg',
     alternateName: 'The Office Coworking',
-    description: 'Professionelt coworking space og podcast studie i hjertet af Frederiksberg. Book mødelokale, podcast-rum eller lej kontorplads.',
+    description: 'Professionelt coworking space i hjertet af Frederiksberg. Book mødelokale eller lej kontorplads.',
     url: 'https://theofficeee.netlify.app',
     telephone: '+45 XX XX XX XX',
     email: 'kontakt@theoffice.dk',
@@ -33,7 +33,6 @@ export default function StructuredData() {
     priceRange: '$$',
     image: [
       'https://theofficeee.netlify.app/images/hero.jpg',
-      'https://theofficeee.netlify.app/images/podcast/studio-1.jpg',
     ],
     sameAs: [
       'https://www.facebook.com/theofficefrederiksberg',
@@ -58,14 +57,6 @@ export default function StructuredData() {
             '@type': 'Service',
             name: 'Mødelokale',
             description: 'Book mødelokale til 8 personer',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Podcast Studie',
-            description: 'Professionelt podcast studie med alt udstyr inkluderet',
           },
         },
       ],

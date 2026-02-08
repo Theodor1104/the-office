@@ -71,23 +71,23 @@ export default function SignUpPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-white rounded-xl shadow-lg p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-light text-primary">
+            <h1 className="text-3xl font-serif text-primary">
               Opret <span className="font-semibold">konto</span>
             </h1>
-            <p className="mt-2 text-gray-600">
-              Opret en konto for at booke mødelokaler og podcast studie
+            <p className="mt-2 text-warm-gray">
+              Opret en konto for at booke mødelokaler
             </p>
           </div>
 
           <form onSubmit={handleSignUp} className="space-y-5">
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="fullName" className="block text-sm font-medium text-warm-gray mb-2">
                 Fulde navn
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-accent-light" size={20} />
                 <input
                   id="fullName"
                   name="fullName"
@@ -95,18 +95,18 @@ export default function SignUpPage() {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 border border-accent-light/50 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
                   placeholder="Dit navn"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-warm-gray mb-2">
                 Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-accent-light" size={20} />
                 <input
                   id="email"
                   name="email"
@@ -114,36 +114,36 @@ export default function SignUpPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 border border-accent-light/50 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
                   placeholder="din@email.dk"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="phone" className="block text-sm font-medium text-warm-gray mb-2">
                 Telefon (valgfrit)
               </label>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-accent-light" size={20} />
                 <input
                   id="phone"
                   name="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 border border-accent-light/50 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
                   placeholder="+45 12 34 56 78"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-warm-gray mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-accent-light" size={20} />
                 <input
                   id="password"
                   name="password"
@@ -151,18 +151,18 @@ export default function SignUpPage() {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 border border-accent-light/50 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
                   placeholder="Mindst 6 tegn"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-warm-gray mb-2">
                 Bekræft password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-accent-light" size={20} />
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -170,7 +170,7 @@ export default function SignUpPage() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 border border-accent-light/50 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition"
                   placeholder="Gentag password"
                 />
               </div>
@@ -185,7 +185,7 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Opretter konto...' : 'Opret konto'}
               {!loading && <ArrowRight className="ml-2" size={20} />}
@@ -193,7 +193,7 @@ export default function SignUpPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-600">
+            <p className="text-warm-gray">
               Har du allerede en konto?{' '}
               <Link href="/login" className="text-primary font-semibold hover:underline">
                 Log ind
@@ -201,8 +201,8 @@ export default function SignUpPage() {
             </p>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">
+          <div className="mt-6 pt-6 border-t border-accent-light/30">
+            <p className="text-xs text-warm-gray text-center">
               Ved at oprette en konto accepterer du vores vilkår og betingelser.
               Har du lejet kontorplads? Kontakt os for at få medlemsstatus.
             </p>

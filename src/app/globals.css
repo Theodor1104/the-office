@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FAFAFA;
-  --foreground: #1A1A1A;
-  --primary: #0A0A0A;
-  --secondary: #F5F5F5;
-  --accent: #333333;
+  --background: #FAF8F5;
+  --foreground: #2C2420;
+  --primary: #2C2420;
+  --secondary: #F4F1E8;
+  --accent: #8B7355;
+  --accent-light: #C4B59A;
+  --accent-hover: #7A6448;
+  --warm-gray: #A89B8C;
+  --surface: #F7F5F0;
   --white: #FFFFFF;
 }
 
@@ -15,14 +19,19 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent-light: var(--accent-light);
+  --color-accent-hover: var(--accent-hover);
+  --color-warm-gray: var(--warm-gray);
+  --color-surface: var(--surface);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-dm-serif-display);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 /* Custom scrollbar */
@@ -35,8 +44,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: var(--accent);
   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
 }
 
 /* Smooth scroll */

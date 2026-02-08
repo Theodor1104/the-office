@@ -11,7 +11,7 @@ export interface User {
 export interface Room {
   id: string
   name: string
-  type: 'meeting' | 'podcast' | 'office'
+  type: 'meeting' | 'office'
   description: string
   price_per_hour?: number // null for gratis (medlemmer)
   price_per_day?: number
@@ -39,14 +39,6 @@ export const PRICING = {
     guest_per_day: 750,
     member_per_day: 0,
   },
-  podcast: {
-    guest_per_hour: 399,
-    guest_3hour_package: 699,
-    guest_with_technician: 799,
-    video_addon: 199,
-    post_production: 499,
-    member_per_hour: 0,
-  },
   office: {
     single_desk: 2500,
     full_room: 8000,
@@ -60,7 +52,6 @@ export const NAV_ITEMS = [
   { name: 'Om os', href: '/om-os' },
   { name: 'Faciliteter', href: '/faciliteter' },
   { name: 'Priser', href: '/priser' },
-  { name: 'Podcast', href: '/podcast' },
   { name: 'Book nu', href: '/book' },
   { name: 'Kontakt', href: '/kontakt' },
 ] as const

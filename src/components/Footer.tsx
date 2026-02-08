@@ -10,10 +10,10 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="inline-block">
               <span className="text-2xl font-light tracking-wider">
-                The <span className="font-semibold">Office</span>
+                The <span className="font-semibold font-serif">Office</span>
               </span>
             </Link>
-            <p className="mt-4 text-sm text-gray-300 max-w-md">
+            <p className="mt-4 text-sm text-accent-light max-w-md">
               Dit professionelle coworking space i hjertet af Frederiksberg.
               Fællesskab, netværk og moderne faciliteter under ét tag.
             </p>
@@ -26,11 +26,6 @@ export default function Footer() {
               <li>
                 <Link href="/book" className="hover:text-white transition-colors">
                   Book lokale
-                </Link>
-              </li>
-              <li>
-                <Link href="/podcast" className="hover:text-white transition-colors">
-                  Podcast studie
                 </Link>
               </li>
               <li>
@@ -68,7 +63,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-gray-400">
+        <div className="mt-12 pt-8 border-t border-accent-light/20 text-center text-sm text-accent-light/60">
           <p>&copy; {new Date().getFullYear()} The Office. Alle rettigheder forbeholdes.</p>
         </div>
       </div>

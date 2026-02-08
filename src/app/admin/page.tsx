@@ -218,32 +218,32 @@ export default function AdminPage() {
         <div className="mb-8">
           <div className="flex items-center gap-3">
             <Shield className="text-primary" size={32} />
-            <h1 className="text-3xl font-light text-primary">
+            <h1 className="text-3xl font-serif text-primary">
               Admin <span className="font-semibold">Panel</span>
             </h1>
           </div>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-warm-gray">
             Administrer brugere, medlemskaber og bookinger
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-lg p-6 shadow">
+          <div className="bg-white rounded-xl p-6 shadow">
             <p className="text-3xl font-bold text-primary">{profiles.length}</p>
-            <p className="text-gray-600">Brugere i alt</p>
+            <p className="text-warm-gray">Brugere i alt</p>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow">
+          <div className="bg-white rounded-xl p-6 shadow">
             <p className="text-3xl font-bold text-green-600">{members.length}</p>
-            <p className="text-gray-600">Medlemmer</p>
+            <p className="text-warm-gray">Medlemmer</p>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow">
+          <div className="bg-white rounded-xl p-6 shadow">
             <p className="text-3xl font-bold text-yellow-600">{pendingBookings.length}</p>
-            <p className="text-gray-600">Afventer godkendelse</p>
+            <p className="text-warm-gray">Afventer godkendelse</p>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow">
+          <div className="bg-white rounded-xl p-6 shadow">
             <p className="text-3xl font-bold text-blue-600">{confirmedBookings.length}</p>
-            <p className="text-gray-600">Bekræftede bookinger</p>
+            <p className="text-warm-gray">Bekræftede bookinger</p>
           </div>
         </div>
 
@@ -254,7 +254,7 @@ export default function AdminPage() {
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
               activeTab === 'bookings'
                 ? 'bg-primary text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-100'
+                : 'bg-white text-warm-gray hover:bg-secondary'
             }`}
           >
             <Calendar className="inline mr-2" size={18} />
@@ -265,7 +265,7 @@ export default function AdminPage() {
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
               activeTab === 'users'
                 ? 'bg-primary text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-100'
+                : 'bg-white text-warm-gray hover:bg-secondary'
             }`}
           >
             <Users className="inline mr-2" size={18} />
@@ -275,7 +275,7 @@ export default function AdminPage() {
 
         {/* Bookings Tab */}
         {activeTab === 'bookings' && (
-          <div className="bg-white rounded-lg shadow overflow-hidden">
+          <div className="bg-white rounded-xl shadow overflow-hidden">
             <div className="p-6 border-b">
               <h2 className="text-lg font-semibold text-primary flex items-center">
                 <Calendar className="mr-2" size={20} />
@@ -290,17 +290,17 @@ export default function AdminPage() {
 
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50">
+                <thead className="bg-surface">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Bruger</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Lokale</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dato & tid</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pris</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Handling</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Bruger</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Lokale</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Dato & tid</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Pris</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Handling</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-accent-light/30">
                   {bookings.map((booking) => (
                     <tr key={booking.id} className={booking.status === 'pending' ? 'bg-yellow-50' : ''}>
                       <td className="px-6 py-4">
@@ -308,25 +308,25 @@ export default function AdminPage() {
                           <p className="font-medium text-primary">
                             {booking.profiles?.full_name || 'Ingen navn'}
                           </p>
-                          <p className="text-sm text-gray-500">{booking.profiles?.email}</p>
+                          <p className="text-sm text-warm-gray">{booking.profiles?.email}</p>
                           {booking.profiles?.phone && (
-                            <p className="text-sm text-gray-500">{booking.profiles.phone}</p>
+                            <p className="text-sm text-warm-gray">{booking.profiles.phone}</p>
                           )}
                           {!booking.profiles?.is_member && (
                             <span className="text-xs text-orange-600">Gæst</span>
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-gray-600">
+                      <td className="px-6 py-4 text-warm-gray">
                         {booking.rooms?.name || booking.rooms?.type}
                       </td>
                       <td className="px-6 py-4">
-                        <div className="flex items-center text-gray-600">
+                        <div className="flex items-center text-warm-gray">
                           <Clock size={14} className="mr-1" />
                           {format(new Date(booking.start_time), "d. MMM yyyy 'kl.' HH:mm", { locale: da })}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-gray-600">
+                      <td className="px-6 py-4 text-warm-gray">
                         {booking.total_price === 0 ? (
                           <span className="text-green-600">Gratis</span>
                         ) : (
@@ -347,7 +347,7 @@ export default function AdminPage() {
                             Afvist
                           </span>
                         ) : (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-surface text-foreground">
                             {booking.status}
                           </span>
                         )}
@@ -378,7 +378,7 @@ export default function AdminPage() {
                             <button
                               onClick={() => updateBookingStatus(booking.id, 'cancelled')}
                               disabled={updating === booking.id}
-                              className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50"
+                              className="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-surface text-warm-gray hover:bg-secondary disabled:opacity-50"
                             >
                               <X size={14} className="mr-1" />
                               Annuller
@@ -401,7 +401,7 @@ export default function AdminPage() {
             </div>
 
             {bookings.length === 0 && (
-              <div className="p-12 text-center text-gray-500">
+              <div className="p-12 text-center text-warm-gray">
                 <Calendar size={48} className="mx-auto mb-4 opacity-50" />
                 <p>Ingen bookinger endnu</p>
               </div>
@@ -411,7 +411,7 @@ export default function AdminPage() {
 
         {/* Users Tab */}
         {activeTab === 'users' && (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-white rounded-xl shadow overflow-hidden">
           <div className="p-6 border-b">
             <h2 className="text-lg font-semibold text-primary flex items-center">
               <Users className="mr-2" size={20} />
@@ -421,18 +421,18 @@ export default function AdminPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-surface">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Bruger</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Telefon</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Handling</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Bruger</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Email</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Telefon</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-warm-gray uppercase">Handling</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-accent-light/30">
                 {profiles.map((profile) => (
-                  <tr key={profile.id} className="hover:bg-gray-50">
+                  <tr key={profile.id} className="hover:bg-surface">
                     <td className="px-6 py-4">
                       <div className="flex items-center">
                         <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
@@ -445,8 +445,8 @@ export default function AdminPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-600">{profile.email}</td>
-                    <td className="px-6 py-4 text-gray-600">{profile.phone || '-'}</td>
+                    <td className="px-6 py-4 text-warm-gray">{profile.email}</td>
+                    <td className="px-6 py-4 text-warm-gray">{profile.phone || '-'}</td>
                     <td className="px-6 py-4">
                       <div className="flex flex-wrap gap-1">
                         {profile.is_admin && (
@@ -461,7 +461,7 @@ export default function AdminPage() {
                             Medlem
                           </span>
                         ) : (
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-surface text-foreground">
                             Gæst
                           </span>
                         )}
@@ -496,7 +496,7 @@ export default function AdminPage() {
                           className={`inline-flex items-center px-3 py-1 rounded text-sm font-medium transition-colors ${
                             profile.is_admin
                               ? 'bg-purple-100 text-purple-700 hover:bg-purple-200'
-                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                              : 'bg-surface text-warm-gray hover:bg-secondary'
                           } disabled:opacity-50`}
                           title={profile.email === PRIMARY_ADMIN_EMAIL ? 'Primær admin kan ikke ændres' : ''}
                         >
@@ -512,7 +512,7 @@ export default function AdminPage() {
           </div>
 
           {profiles.length === 0 && (
-            <div className="p-12 text-center text-gray-500">
+            <div className="p-12 text-center text-warm-gray">
               <Users size={48} className="mx-auto mb-4 opacity-50" />
               <p>Ingen brugere endnu</p>
             </div>

@@ -68,8 +68,6 @@ export async function POST(request: Request) {
   if (!isMember) {
     if (room_type === 'meeting') {
       totalPrice = 750 // per day
-    } else if (room_type === 'podcast') {
-      totalPrice = 699 // 3-hour package
     }
   }
 

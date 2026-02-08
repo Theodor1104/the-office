@@ -82,7 +82,7 @@ Når du skal i produktion:
 
 Skemaet opretter disse tabeller:
 - `profiles` - Brugerdata (navn, telefon, medlemsstatus)
-- `rooms` - Lokaler (mødelokale, podcast studie, kontor)
+- `rooms` - Lokaler (mødelokale, kontor)
 - `bookings` - Alle bookinger
 - `contact_submissions` - Kontaktformular beskeder
 

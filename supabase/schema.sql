@@ -19,7 +19,7 @@ create table public.profiles (
 create table public.rooms (
   id uuid default uuid_generate_v4() primary key,
   name text not null,
-  type text not null check (type in ('meeting', 'podcast', 'office')),
+  type text not null check (type in ('meeting', 'office')),
   description text,
   capacity integer not null default 1,
   amenities text[] default '{}',
@@ -55,7 +55,6 @@ create table public.contact_submissions (
 -- Insert default rooms
 insert into public.rooms (name, type, description, capacity, amenities) values
   ('Mødelokale', 'meeting', 'Professionelt mødelokale med plads til 8 personer', 8, '{"Whiteboard", "Projektor", "Videokonference", "Kaffe & te"}'),
-  ('Podcast Studie', 'podcast', 'Fuldt udstyret podcast studie med professionel lydkvalitet', 4, '{"Professionelle mikrofoner", "Lydtæt rum", "Hovedtelefoner", "Mixer"}'),
   ('Kontorrum', 'office', 'Dedikeret kontorrum med 4 arbejdspladser', 4, '{"Hæve-sænke borde", "Ergonomiske stole", "Skærmplads", "Opbevaring"}');
 
 -- Row Level Security (RLS)
