@@ -94,11 +94,21 @@ create policy "Users can update own bookings"
   to authenticated
   using (auth.uid() = user_id);
 
--- Contact submissions (anyone can create)
+-- Contact submissions policies
 create policy "Anyone can create contact submission"
   on public.contact_submissions for insert
   to authenticated, anon
   with check (true);
+
+create policy "Authenticated users can view contact submissions"
+  on public.contact_submissions for select
+  to authenticated
+  using (true);
+
+create policy "Authenticated users can delete contact submissions"
+  on public.contact_submissions for delete
+  to authenticated
+  using (true);
 
 -- Function to handle new user creation
 create or replace function public.handle_new_user()
