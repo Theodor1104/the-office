@@ -17,6 +17,9 @@ export default function Home() {
           fill
           className="object-cover"
           priority
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAKAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUH/8QAIhAAAgEDBAMBAAAAAAAAAAAAAQIDBAURAAYSIRMxQWH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABkRAAIDAQAAAAAAAAAAAAAAAAECAAMRIf/aAAwDAQACEQMRAD8Ax9f3B3Jb0r7u89tU9Zaql1h8yVkMuGDdqo7+Egf0/SNqNu3a0UNprbfDPSVdJAqhQ4K8IUAMqexnsLJGP2Gkej/RNJSirF2z/9k="
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
 
