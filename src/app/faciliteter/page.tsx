@@ -48,8 +48,8 @@ export default function FacilitiesPage() {
     {
       icon: Mic,
       name: 'Podcast-studie',
-      description: 'Professionelt lydstudie til podcast-optagelser, videoindhold og voiceovers. Lydisoleret rum med alt udstyr.',
-      features: ['Professionelle mikrofoner', 'Lydisoleret rum', 'Mixerpult', 'Studiehøretelefoner'],
+      description: 'Professionelt lydstudie til podcastere, lydbogsindlæsere og content creators. Roligt og teknisk veludstyret miljø.',
+      features: ['Lydisoleret rum', 'Professionelt udstyr', 'Mulighed for video', 'Tekniker tilgængelig'],
       image: '/images/podcast/podcast-studio.jpg'
     },
   ]
