@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Users, ArrowRight, Presentation, Star, Quote, Phone, Clock, Building2, Check } from 'lucide-react'
+import { Users, ArrowRight, Presentation, Phone, Clock, Building2, Check } from 'lucide-react'
 import { PRICING } from '@/lib/types'
 import { Metadata } from 'next'
 import FAQAccordion from '@/components/FAQAccordion'
@@ -245,60 +245,6 @@ export default function Home() {
                 Eller skriv til os
                 <ArrowRight className="ml-2" size={20} />
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'Anna K.',
-                role: 'Freelance designer',
-                quote: 'The Office har givet mig det professionelle miljø jeg manglede. Fantastisk fællesskab og perfekt beliggenhed.',
-                initials: 'AK',
-              },
-              {
-                name: 'Mark S.',
-                role: 'Startup-stifter',
-                quote: 'Vi flyttede hele teamet herind. Mødelokalet er perfekt til kundemøder, og prisen er fair for beliggenheden.',
-                initials: 'MS',
-              },
-              {
-                name: 'Louise H.',
-                role: 'Konsulent',
-                quote: 'Endelig et sted hvor jeg kan fokusere. Kaffen er god, menneskerne er bedre. Kan varmt anbefales.',
-                initials: 'LH',
-              },
-            ].map((testimonial) => (
-              <div key={testimonial.name} className="bg-background rounded-xl p-6">
-                <Quote className="text-accent/30 mb-3" size={24} />
-                <p className="text-primary leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
-                    <span className="text-sm font-semibold text-accent">{testimonial.initials}</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-primary">{testimonial.name}</p>
-                    <p className="text-xs text-warm-gray">{testimonial.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 text-center">
-            <div className="inline-flex items-center gap-2 bg-background px-4 py-2 rounded-full">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-yellow-500 fill-yellow-500" />
-                ))}
-              </div>
-              <span className="text-sm text-warm-gray">5/5 på Google</span>
             </div>
           </div>
         </div>
