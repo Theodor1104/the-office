@@ -8,14 +8,15 @@ import {
   Presentation,
   Sofa,
   UtensilsCrossed,
+  Mic,
   ArrowRight
 } from 'lucide-react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Faciliteter - Mødelokale, Køkken, Lounge & Mere',
-  description: 'Oplev vores moderne faciliteter: Professionelt mødelokale til 8 personer, højhastigheds WiFi, køkken og lounge. Alt inkluderet.',
-  keywords: ['coworking faciliteter', 'mødelokale Frederiksberg', 'kontorfællesskab faciliteter'],
+  title: 'Faciliteter - Mødelokale, Køkken, Lounge & Podcast-studie',
+  description: 'Oplev vores moderne faciliteter: Professionelt mødelokale, køkken, lounge og lydisoleret podcast-studie. Alt inkluderet.',
+  keywords: ['coworking faciliteter', 'mødelokale Frederiksberg', 'kontorfællesskab faciliteter', 'podcast studie København'],
   alternates: {
     canonical: 'https://theofficeee.netlify.app/faciliteter',
   },
@@ -43,6 +44,13 @@ export default function FacilitiesPage() {
       description: 'Komfortabel lounge til pauser, uformelle møder og netværk med andre medlemmer.',
       features: ['Behagelige sofaer', 'Læsehjørne', 'Naturligt lys', 'Planter & grønt'],
       image: '/images/lounge/lounge.jpg'
+    },
+    {
+      icon: Mic,
+      name: 'Podcast-studie',
+      description: 'Professionelt lydstudie til podcast-optagelser, videoindhold og voiceovers. Lydisoleret rum med alt udstyr.',
+      features: ['Professionelle mikrofoner', 'Lydisoleret rum', 'Mixerpult', 'Studiehøretelefoner'],
+      image: '/images/podcast/podcast-studio.jpg'
     },
   ]
 
