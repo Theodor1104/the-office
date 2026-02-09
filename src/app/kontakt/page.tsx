@@ -31,11 +31,23 @@ function ContactContent() {
     e.preventDefault()
     setLoading(true)
 
-    // Simuler form submission - i virkeligheden ville dette sende til en API
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-    setSubmitted(true)
-    setLoading(false)
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        alert('Der opstod en fejl. Prøv igen.')
+      }
+    } catch {
+      alert('Der opstod en fejl. Prøv igen.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

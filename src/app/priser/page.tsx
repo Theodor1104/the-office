@@ -130,63 +130,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Meeting Room Pricing */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-primary">
-              Mødelokale
-            </h2>
-            <p className="mt-4 text-warm-gray">
-              Professionelt mødelokale til kundemøder, workshops og brainstorms
-            </p>
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-xl p-8 shadow">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-xl font-semibold text-primary">Dagsleje</h3>
-                  <p className="mt-2 text-warm-gray">Fuld dag med adgang til alle faciliteter</p>
-                </div>
-                <div className="text-right">
-                  <span className="text-3xl font-bold text-primary">{PRICING.meeting_room.guest_per_day}</span>
-                  <span className="text-warm-gray"> kr</span>
-                </div>
-              </div>
-              <div className="mt-6 pt-6 border-t border-accent-light/30">
-                <div className="flex items-center justify-between">
-                  <span className="text-warm-gray">Medlemspris (har kontorplads)</span>
-                  <span className="text-green-600 font-semibold">Gratis</span>
-                </div>
-              </div>
-              <ul className="mt-6 space-y-2">
-                <li className="flex items-center text-sm text-warm-gray">
-                  <Check className="text-green-600 mr-2" size={16} />
-                  Plads til 8 personer
-                </li>
-                <li className="flex items-center text-sm text-warm-gray">
-                  <Check className="text-green-600 mr-2" size={16} />
-                  Whiteboard & projektor
-                </li>
-                <li className="flex items-center text-sm text-warm-gray">
-                  <Check className="text-green-600 mr-2" size={16} />
-                  Kaffe & te inkluderet
-                </li>
-              </ul>
-              <Link
-                href="/book"
-                className="mt-8 block text-center bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              >
-                Book mødelokale
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* After Hours Pricing */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="bg-accent text-white text-sm px-3 py-1 rounded-full">Nyt tilbud</span>
@@ -234,6 +179,61 @@ export default function PricingPage() {
                 className="mt-6 block text-center bg-secondary text-primary py-3 rounded-lg font-semibold hover:bg-white transition-colors"
               >
                 Kontakt os om After Hours
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meeting Room Pricing */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif text-primary">
+              Mødelokale
+            </h2>
+            <p className="mt-4 text-warm-gray">
+              Professionelt mødelokale til kundemøder, workshops og brainstorms
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-background rounded-xl p-8 shadow">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="text-xl font-semibold text-primary">Dagsleje</h3>
+                  <p className="mt-2 text-warm-gray">Fuld dag med adgang til alle faciliteter</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-3xl font-bold text-primary">{PRICING.meeting_room.guest_per_day}</span>
+                  <span className="text-warm-gray"> kr</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-6 border-t border-accent-light/30">
+                <div className="flex items-center justify-between">
+                  <span className="text-warm-gray">Medlemspris (har kontorplads)</span>
+                  <span className="text-green-600 font-semibold">Gratis</span>
+                </div>
+              </div>
+              <ul className="mt-6 space-y-2">
+                <li className="flex items-center text-sm text-warm-gray">
+                  <Check className="text-green-600 mr-2" size={16} />
+                  Plads til 8 personer
+                </li>
+                <li className="flex items-center text-sm text-warm-gray">
+                  <Check className="text-green-600 mr-2" size={16} />
+                  Whiteboard & projektor
+                </li>
+                <li className="flex items-center text-sm text-warm-gray">
+                  <Check className="text-green-600 mr-2" size={16} />
+                  Kaffe & te inkluderet
+                </li>
+              </ul>
+              <Link
+                href="/book"
+                className="mt-8 block text-center bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              >
+                Book mødelokale
               </Link>
             </div>
           </div>

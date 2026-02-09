@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Users, Crown, Shield, Check, X, Calendar, Clock, Trash2 } from 'lucide-react'
+import { Users, Crown, Shield, Check, X, Calendar, Clock, Trash2, MessageSquare, Mail } from 'lucide-react'
 import { format } from 'date-fns'
 import { da } from 'date-fns/locale'
 
@@ -30,13 +30,24 @@ interface Booking {
   rooms: { name: string; type: string }
 }
 
+interface Message {
+  id: string
+  name: string
+  email: string
+  phone: string | null
+  subject: string
+  message: string
+  created_at: string
+}
+
 export default function AdminPage() {
   const [profiles, setProfiles] = useState<Profile[]>([])
   const [bookings, setBookings] = useState<Booking[]>([])
+  const [messages, setMessages] = useState<Message[]>([])
   const [loading, setLoading] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
   const [updating, setUpdating] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState<'users' | 'bookings'>('bookings')
+  const [activeTab, setActiveTab] = useState<'bookings' | 'messages' | 'users'>('bookings')
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const supabase = createClient()
@@ -55,6 +66,7 @@ export default function AdminPage() {
         setIsAdmin(true)
         fetchUsers()
         fetchBookings()
+        fetchMessages()
         return
       }
 
@@ -73,6 +85,7 @@ export default function AdminPage() {
       setIsAdmin(true)
       fetchUsers()
       fetchBookings()
+      fetchMessages()
     }
 
     checkAdmin()
@@ -107,6 +120,42 @@ export default function AdminPage() {
     } catch (err) {
       console.error('Failed to fetch bookings:', err)
       setError('Netværksfejl - kunne ikke hente bookinger')
+    }
+  }
+
+  const fetchMessages = async () => {
+    try {
+      const response = await fetch('/api/admin/messages')
+      const data = await response.json()
+
+      if (response.ok) {
+        setMessages(data)
+      } else {
+        console.error('API error:', data)
+      }
+    } catch (err) {
+      console.error('Failed to fetch messages:', err)
+    }
+  }
+
+  const deleteMessage = async (messageId: string) => {
+    if (!confirm('Er du sikker på du vil slette denne besked?')) return
+
+    setUpdating(messageId)
+    try {
+      const response = await fetch('/api/admin/messages', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messageId }),
+      })
+
+      if (response.ok) {
+        setMessages(messages.filter(m => m.id !== messageId))
+      }
+    } catch (error) {
+      console.error('Failed to delete message:', error)
+    } finally {
+      setUpdating(null)
     }
   }
 
@@ -228,7 +277,7 @@ export default function AdminPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <div className="bg-white rounded-xl p-6 shadow">
             <p className="text-3xl font-bold text-primary">{profiles.length}</p>
             <p className="text-warm-gray">Brugere i alt</p>
@@ -245,6 +294,10 @@ export default function AdminPage() {
             <p className="text-3xl font-bold text-blue-600">{confirmedBookings.length}</p>
             <p className="text-warm-gray">Bekræftede bookinger</p>
           </div>
+          <div className="bg-white rounded-xl p-6 shadow">
+            <p className="text-3xl font-bold text-purple-600">{messages.length}</p>
+            <p className="text-warm-gray">Beskeder</p>
+          </div>
         </div>
 
         {/* Tabs */}
@@ -259,6 +312,17 @@ export default function AdminPage() {
           >
             <Calendar className="inline mr-2" size={18} />
             Bookinger {pendingBookings.length > 0 && `(${pendingBookings.length})`}
+          </button>
+          <button
+            onClick={() => setActiveTab('messages')}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              activeTab === 'messages'
+                ? 'bg-primary text-white'
+                : 'bg-white text-warm-gray hover:bg-secondary'
+            }`}
+          >
+            <MessageSquare className="inline mr-2" size={18} />
+            Beskeder {messages.length > 0 && `(${messages.length})`}
           </button>
           <button
             onClick={() => setActiveTab('users')}
@@ -404,6 +468,71 @@ export default function AdminPage() {
               <div className="p-12 text-center text-warm-gray">
                 <Calendar size={48} className="mx-auto mb-4 opacity-50" />
                 <p>Ingen bookinger endnu</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Messages Tab */}
+        {activeTab === 'messages' && (
+          <div className="bg-white rounded-xl shadow overflow-hidden">
+            <div className="p-6 border-b">
+              <h2 className="text-lg font-semibold text-primary flex items-center">
+                <MessageSquare className="mr-2" size={20} />
+                Beskeder fra kontaktformular
+              </h2>
+            </div>
+
+            <div className="divide-y divide-accent-light/30">
+              {messages.map((message) => (
+                <div key={message.id} className="p-6 hover:bg-surface">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <p className="font-medium text-primary">{message.name}</p>
+                      <div className="flex items-center gap-4 text-sm text-warm-gray mt-1">
+                        <a href={`mailto:${message.email}`} className="flex items-center hover:text-accent">
+                          <Mail size={14} className="mr-1" />
+                          {message.email}
+                        </a>
+                        {message.phone && (
+                          <a href={`tel:${message.phone}`} className="hover:text-accent">
+                            {message.phone}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs text-warm-gray">
+                        {format(new Date(message.created_at), "d. MMM yyyy 'kl.' HH:mm", { locale: da })}
+                      </span>
+                      <button
+                        onClick={() => deleteMessage(message.id)}
+                        disabled={updating === message.id}
+                        className="p-2 text-red-500 hover:bg-red-50 rounded disabled:opacity-50"
+                        title="Slet besked"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mb-2">
+                    <span className="inline-block px-2 py-1 bg-accent/10 text-accent text-xs rounded">
+                      {message.subject === 'general' && 'Generel henvendelse'}
+                      {message.subject === 'office' && 'Kontorplads'}
+                      {message.subject === 'meeting' && 'Mødelokale'}
+                      {message.subject === 'tour' && 'Rundvisning'}
+                      {message.subject === 'afterhours' && 'After Hours'}
+                    </span>
+                  </div>
+                  <p className="text-warm-gray whitespace-pre-wrap">{message.message}</p>
+                </div>
+              ))}
+            </div>
+
+            {messages.length === 0 && (
+              <div className="p-12 text-center text-warm-gray">
+                <MessageSquare size={48} className="mx-auto mb-4 opacity-50" />
+                <p>Ingen beskeder endnu</p>
               </div>
             )}
           </div>
