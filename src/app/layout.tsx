@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     default: 'The Office | Coworking Space i Frederiksberg',
     template: '%s | The Office Frederiksberg',
   },
-  description: 'Professionelt coworking space i hjertet af Frederiksberg. Book mødelokale eller lej kontorplads. 2 min fra Frederiksberg Metro.',
+  description: 'Professionelt coworking space i hjertet af Frederiksberg. Book mødelokale eller lej kontorplads. 2 min fra Frederiksberg Allé Metro.',
   keywords: ['coworking Frederiksberg', 'kontorplads København', 'mødelokale Frederiksberg', 'coworking space København', 'kontorfællesskab Frederiksberg', 'book mødelokale København'],
   authors: [{ name: 'The Office Frederiksberg' }],
   creator: 'The Office',

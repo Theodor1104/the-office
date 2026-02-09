@@ -146,7 +146,7 @@ export default function FacilitiesPage() {
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center text-warm-gray">
                   <span className="text-green-600 mr-3">✓</span>
-                  2 min til Frederiksberg Metro
+                  2 min til Frederiksberg Allé Metro
                 </li>
                 <li className="flex items-center text-warm-gray">
                   <span className="text-green-600 mr-3">✓</span>
@@ -158,10 +158,17 @@ export default function FacilitiesPage() {
                 </li>
               </ul>
             </div>
-            <div className="bg-surface rounded-xl aspect-video flex items-center justify-center">
-              <div className="text-center text-warm-gray">
-                <p className="text-sm">Google Maps embed</p>
-              </div>
+            <div className="rounded-xl overflow-hidden aspect-video">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.847!2d12.5234!3d55.6784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652530e68c3599b%3A0x4dd4d1d87e3d3e0!2sMartensens%20All%C3%A9%208%2C%201828%20Frederiksberg!5e0!3m2!1sda!2sdk!4v1699999999999!5m2!1sda!2sdk"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="The Office lokation"
+              />
             </div>
           </div>
         </div>

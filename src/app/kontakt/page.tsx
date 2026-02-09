@@ -202,7 +202,7 @@ function ContactContent() {
                       1828 Frederiksberg
                     </p>
                     <p className="mt-2 text-sm text-warm-gray">
-                      2 min gang fra Frederiksberg Metro
+                      2 min gang fra Frederiksberg Allé Metro
                     </p>
                   </div>
                 </div>
