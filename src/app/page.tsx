@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Phone, MapPin } from 'lucide-react'
+import { ArrowRight, Phone, MapPin, Clock, Users, Coffee } from 'lucide-react'
 import { PRICING } from '@/lib/types'
+import ScrollReveal from '@/components/ScrollReveal'
 
 export default function Home() {
   return (
@@ -19,7 +20,6 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
 
-        {/* Content at bottom */}
         <div className="relative z-10 w-full pb-16 md:pb-24">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             <div className="max-w-2xl">
@@ -53,121 +53,247 @@ export default function Home() {
       </section>
 
       {/* ===== THREE PRODUCTS — Visual cards ===== */}
-      <section className="py-20 md:py-32 bg-background">
+      <section className="py-20 md:py-28 bg-background">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-3 gap-6">
+          <ScrollReveal>
+            <p className="text-accent text-sm tracking-[0.2em] uppercase mb-3">Vores tilbud</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-primary mb-12">
+              Tre måder at arbejde
+            </h2>
+          </ScrollReveal>
 
+          <div className="grid md:grid-cols-3 gap-6">
             {/* AFTER HOURS */}
-            <a
-              href="tel:+4571998877"
-              className="group relative aspect-[4/5] rounded-2xl overflow-hidden"
-            >
-              <Image
-                src="/images/hero.jpg"
-                alt="After Hours"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute top-4 left-4">
-                <span className="inline-flex items-center gap-2 bg-accent text-white text-xs px-3 py-1.5 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  Nyt
-                </span>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-white/60 text-sm mb-1">Aften & weekend</p>
-                <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">After Hours</h3>
-                <p className="text-white/70 text-sm mb-4">6 kontorer · Ring for pris</p>
-                <span className="inline-flex items-center text-accent-light text-sm group-hover:gap-2 transition-all">
-                  <Phone size={14} className="mr-2" />
-                  71 99 88 77
-                </span>
-              </div>
-            </a>
+            <ScrollReveal delay={100}>
+              <a
+                href="tel:+4571998877"
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
+              >
+                <Image
+                  src="/images/hero.jpg"
+                  alt="After Hours"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4">
+                  <span className="inline-flex items-center gap-2 bg-accent text-white text-xs px-3 py-1.5 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    Nyt
+                  </span>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-white/60 text-sm mb-1">Aften & weekend</p>
+                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">After Hours</h3>
+                  <p className="text-white/70 text-sm mb-4">6 kontorer · Ring for pris</p>
+                  <span className="inline-flex items-center text-accent-light text-sm">
+                    <Phone size={14} className="mr-2" />
+                    71 99 88 77
+                  </span>
+                </div>
+              </a>
+            </ScrollReveal>
 
             {/* MØDELOKALE */}
-            <Link
-              href="/book"
-              className="group relative aspect-[4/5] rounded-2xl overflow-hidden"
-            >
-              <Image
-                src="/images/meeting/meeting-room.jpg"
-                alt="Mødelokale"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-white/60 text-sm mb-1">Op til 8 personer</p>
-                <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Mødelokale</h3>
-                <p className="text-white/70 text-sm mb-4">Projektor · Whiteboard · Kaffe</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-white text-xl font-medium">{PRICING.meeting_room.guest_per_day} kr/dag</span>
-                  <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+            <ScrollReveal delay={200}>
+              <Link
+                href="/book"
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
+              >
+                <Image
+                  src="/images/meeting/meeting-room.jpg"
+                  alt="Mødelokale"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-white/60 text-sm mb-1">Op til 8 personer</p>
+                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Mødelokale</h3>
+                  <p className="text-white/70 text-sm mb-4">Projektor · Whiteboard · Kaffe</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white text-xl font-medium">{PRICING.meeting_room.guest_per_day} kr/dag</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </ScrollReveal>
 
             {/* KONTORPLADS */}
-            <Link
-              href="/kontakt?emne=office"
-              className="group relative aspect-[4/5] rounded-2xl overflow-hidden"
-            >
-              <Image
-                src="/images/office/office-main.jpg"
-                alt="Kontorplads"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute top-4 left-4">
-                <span className="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full font-medium">
-                  Kun 1 tilbage
-                </span>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-white/60 text-sm mb-1">Fast plads · Ingen binding</p>
-                <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Kontorplads</h3>
-                <p className="text-white/70 text-sm mb-4">+ gratis mødelokale</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-white text-xl font-medium">{PRICING.office.single_desk.toLocaleString('da-DK')} kr/md</span>
-                  <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+            <ScrollReveal delay={300}>
+              <Link
+                href="/kontakt?emne=office"
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
+              >
+                <Image
+                  src="/images/office/office-main.jpg"
+                  alt="Kontorplads"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4">
+                  <span className="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full font-medium">
+                    Kun 1 tilbage
+                  </span>
                 </div>
-              </div>
-            </Link>
-
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-white/60 text-sm mb-1">Fast plads · Ingen binding</p>
+                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Kontorplads</h3>
+                  <p className="text-white/70 text-sm mb-4">+ gratis mødelokale</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white text-xl font-medium">{PRICING.office.single_desk.toLocaleString('da-DK')} kr/md</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ===== LOCATION + CTA — Compact ===== */}
-      <section className="py-16 bg-primary text-white">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-            <div className="flex items-center gap-4">
-              <MapPin className="text-accent-light flex-shrink-0" size={24} />
-              <div>
-                <p className="font-serif text-xl">Martensens Allé 8</p>
-                <p className="text-white/60 text-sm">1828 Frederiksberg · 2 min fra metro</p>
+      {/* ===== AFTER HOURS HIGHLIGHT ===== */}
+      <section className="py-20 md:py-28 bg-primary text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <ScrollReveal direction="left">
+              <p className="text-accent-light text-sm tracking-[0.2em] uppercase mb-4">After Hours</p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+                Dit kontor,<br />
+                <span className="italic text-accent-light">din tid</span>
+              </h2>
+              <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-lg">
+                Ikke alle arbejder 9-17. Vores 6 kontorer står tomme aften og weekend —
+                hvorfor ikke bruge dem?
+              </p>
+
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                <div className="text-center p-4 bg-white/5 rounded-xl">
+                  <Clock className="mx-auto mb-2 text-accent-light" size={24} />
+                  <p className="text-sm text-white/70">Fleksible tider</p>
+                </div>
+                <div className="text-center p-4 bg-white/5 rounded-xl">
+                  <Users className="mx-auto mb-2 text-accent-light" size={24} />
+                  <p className="text-sm text-white/70">6 kontorer</p>
+                </div>
+                <div className="text-center p-4 bg-white/5 rounded-xl">
+                  <Coffee className="mx-auto mb-2 text-accent-light" size={24} />
+                  <p className="text-sm text-white/70">Alle faciliteter</p>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-wrap gap-4">
+            </ScrollReveal>
+
+            <ScrollReveal direction="right" delay={100}>
+              <div className="relative">
+                <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-2xl" />
+                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-8 md:p-10 text-center">
+                  <p className="text-accent-light text-sm tracking-wider uppercase mb-4">Ring til os</p>
+                  <a
+                    href="tel:+4571998877"
+                    className="block text-4xl md:text-5xl font-bold mb-4 hover:text-accent-light transition-colors"
+                  >
+                    71 99 88 77
+                  </a>
+                  <p className="text-white/60 mb-6">Vi finder en løsning der passer dig</p>
+                  <Link
+                    href="/kontakt?emne=afterhours"
+                    className="inline-flex items-center text-accent-light hover:text-white transition-colors text-sm"
+                  >
+                    Eller send en besked
+                    <ArrowRight className="ml-2" size={16} />
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== MEETING ROOM HIGHLIGHT ===== */}
+      <section className="relative py-20 md:py-28">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/meeting/meeting-room.jpg"
+            alt="Mødelokale"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/60" />
+        </div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="max-w-xl">
+            <ScrollReveal>
+              <p className="text-accent-light text-sm tracking-[0.2em] uppercase mb-4">Mødelokale</p>
+              <h2 className="font-serif text-4xl md:text-5xl text-white leading-tight mb-6">
+                Imponér dine kunder
+              </h2>
+              <p className="text-lg text-white/70 leading-relaxed mb-8">
+                Et professionelt rum med alt hvad du behøver.
+                Whiteboard, projektor, videokonference og god kaffe.
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-8">
+                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">8 personer</span>
+                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">Projektor</span>
+                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">Whiteboard</span>
+                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">Kaffe</span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-6">
+                <Link
+                  href="/book"
+                  className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
+                >
+                  Book nu
+                  <ArrowRight className="ml-2" size={18} />
+                </Link>
+                <div className="text-white">
+                  <span className="text-2xl font-semibold">{PRICING.meeting_room.guest_per_day} kr</span>
+                  <span className="text-white/60 text-sm ml-2">/ dag</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FINAL CTA ===== */}
+      <section className="py-20 md:py-28 bg-secondary">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl md:text-5xl text-primary mb-6">
+              Klar til at komme i gang?
+            </h2>
+            <p className="text-lg text-warm-gray mb-10">
+              Book mødelokale online, ring om After Hours,
+              eller kom forbi til en rundvisning.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link
                 href="/book"
-                className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
+                className="inline-flex items-center justify-center bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-accent-hover transition-colors"
               >
                 Book mødelokale
+                <ArrowRight className="ml-2" size={18} />
               </Link>
               <a
                 href="tel:+4571998877"
-                className="inline-flex items-center border border-white/30 text-white px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center border-2 border-primary text-primary px-8 py-4 rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
               >
-                <Phone className="mr-2" size={16} />
-                Ring os
+                <Phone className="mr-2" size={18} />
+                71 99 88 77
               </a>
             </div>
-          </div>
+
+            <div className="flex items-center justify-center gap-2 text-warm-gray">
+              <MapPin size={16} />
+              <span>Martensens Allé 8, 1828 Frederiksberg</span>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>
