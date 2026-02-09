@@ -56,3 +56,194 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ===== CUSTOM ANIMATIONS ===== */
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Subtle float */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Gradient shift */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animation utility classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* Initially hidden for animation */
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.is-visible {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Premium hover effects */
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -12px rgba(44, 36, 32, 0.15);
+}
+
+.hover-glow {
+  transition: box-shadow 0.4s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 40px rgba(139, 115, 85, 0.3);
+}
+
+/* Image hover zoom */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.6s ease;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient background */
+.bg-gradient-animated {
+  background: linear-gradient(-45deg, var(--primary), var(--accent), var(--primary), var(--accent-hover));
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Premium card style */
+.card-premium {
+  background: var(--white);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(44, 36, 32, 0.05), 0 2px 4px -1px rgba(44, 36, 32, 0.03);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(44, 36, 32, 0.12);
+}
+
+/* Divider with gradient */
+.divider-gradient {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+}
+
+/* Section overlap effect */
+.section-overlap {
+  margin-top: -80px;
+  position: relative;
+  z-index: 10;
+}
