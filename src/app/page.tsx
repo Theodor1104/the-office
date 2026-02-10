@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* ===== HERO — Full-screen, image-focused ===== */}
-      <section className="h-screen relative flex items-end">
+      <section className="h-[70vh] min-h-[500px] relative flex items-end">
         <Image
           src="/images/hero.jpg"
           alt="The Office"
