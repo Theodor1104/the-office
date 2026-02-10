@@ -302,6 +302,80 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== KONTORPLADS HIGHLIGHT ===== */}
+      <section className="py-20 md:py-28 bg-primary text-white relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <ScrollReveal direction="left">
+              <div className="relative">
+                <div className="absolute inset-0 bg-red-500/20 rounded-2xl blur-2xl" />
+                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-8 md:p-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full font-medium animate-pulse">
+                      Sidste ledige kontor!
+                    </span>
+                  </div>
+                  <div className="mb-6">
+                    <span className="text-5xl md:text-6xl font-bold">{PRICING.office.single_desk.toLocaleString('da-DK')}</span>
+                    <span className="text-xl text-white/60 ml-2">kr/md</span>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-center text-white/80">
+                      <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                      Fast skrivebord & ergonomisk stol
+                    </li>
+                    <li className="flex items-center text-white/80">
+                      <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                      Gratis mødelokale inkluderet
+                    </li>
+                    <li className="flex items-center text-white/80">
+                      <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                      Ingen binding — opsig når som helst
+                    </li>
+                  </ul>
+                  <Link
+                    href="/kontakt?emne=office"
+                    className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors w-full justify-center"
+                  >
+                    Book en rundvisning
+                    <ArrowRight className="ml-2" size={18} />
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="right" delay={100}>
+              <p className="text-accent-light text-sm tracking-[0.2em] uppercase mb-4">Kontorplads</p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+                Din faste<br />
+                <span className="italic text-accent-light">arbejdsplads</span>
+              </h2>
+              <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-lg">
+                Bliv en del af fællesskabet. Fast plads i et inspirerende miljø
+                med andre freelancere, iværksættere og små teams.
+              </p>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-white/5 rounded-xl">
+                  <Users className="mx-auto mb-2 text-accent-light" size={24} />
+                  <p className="text-sm text-white/70">Fællesskab</p>
+                </div>
+                <div className="text-center p-4 bg-white/5 rounded-xl">
+                  <Coffee className="mx-auto mb-2 text-accent-light" size={24} />
+                  <p className="text-sm text-white/70">Gratis kaffe</p>
+                </div>
+                <div className="text-center p-4 bg-white/5 rounded-xl">
+                  <MapPin className="mx-auto mb-2 text-accent-light" size={24} />
+                  <p className="text-sm text-white/70">2 min til metro</p>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* ===== FINAL CTA ===== */}
       <section className="py-20 md:py-28 bg-secondary">
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
