@@ -9,7 +9,8 @@ import {
   Sofa,
   UtensilsCrossed,
   Mic,
-  ArrowRight
+  ArrowRight,
+  Package
 } from 'lucide-react'
 import { Metadata } from 'next'
 
@@ -59,6 +60,7 @@ export default function FacilitiesPage() {
     { icon: Monitor, name: 'Ergonomiske arbejdspladser', description: 'Hæve-sænke borde og kvalitetsstole' },
     { icon: Coffee, name: 'Gratis kaffe & te', description: 'Frisk kaffe og udvalg af te hele dagen' },
     { icon: Users, name: 'Fællesarealer', description: 'Plads til at mødes og netværke' },
+    { icon: Package, name: 'Lager', description: 'Opbevaringsplads til kasser og udstyr' },
   ]
 
   return (
@@ -119,7 +121,7 @@ export default function FacilitiesPage() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {amenities.map((amenity) => (
               <div key={amenity.name} className="bg-white rounded-xl p-6 text-center">
                 <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">

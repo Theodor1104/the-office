@@ -86,11 +86,11 @@ export default function Navigation() {
           {/* Right side: Phone + Auth */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+4571998877"
+              href="tel:+4530342272"
               className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm"
             >
               <Phone size={14} />
-              <span>71 99 88 77</span>
+              <span>30 34 22 72</span>
             </a>
             <span className="w-px h-6 bg-white/20" />
             {isLoading ? (
@@ -140,11 +140,11 @@ export default function Navigation() {
             </div>
             <div className="mt-4 pt-4 border-t border-white/10 space-y-3">
               <a
-                href="tel:+4571998877"
+                href="tel:+4530342272"
                 className="flex items-center gap-2 text-white/70 px-4"
               >
                 <Phone size={16} />
-                <span>71 99 88 77</span>
+                <span>30 34 22 72</span>
               </a>
               {!isLoading && (user ? (
                 <Link

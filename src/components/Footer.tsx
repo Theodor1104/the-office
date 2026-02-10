@@ -54,8 +54,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-white flex-shrink-0" />
-                <a href="mailto:hello@theofficestudio.dk" className="hover:text-white transition-colors">
-                  hello@theofficestudio.dk
+                <a href="mailto:michael@timeforlicensing.com" className="hover:text-white transition-colors">
+                  michael@timeforlicensing.com
                 </a>
               </li>
             </ul>

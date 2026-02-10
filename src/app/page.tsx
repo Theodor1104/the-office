@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Phone, MapPin, Clock, Users, Coffee } from 'lucide-react'
+import { ArrowRight, Phone, MapPin, Clock, Users, Coffee, Mic } from 'lucide-react'
 import { PRICING } from '@/lib/types'
 import ScrollReveal from '@/components/ScrollReveal'
 
@@ -43,11 +43,11 @@ export default function Home() {
                   <ArrowRight className="ml-2" size={18} />
                 </Link>
                 <a
-                  href="tel:+4571998877"
+                  href="tel:+4530342272"
                   className="inline-flex items-center bg-white/10 backdrop-blur text-white px-6 py-3 rounded-full font-medium hover:bg-white/20 transition-colors"
                 >
                   <Phone className="mr-2" size={16} />
-                  71 99 88 77
+                  30 34 22 72
                 </a>
               </div>
             </div>
@@ -61,15 +61,15 @@ export default function Home() {
           <ScrollReveal>
             <p className="text-accent text-sm tracking-[0.2em] uppercase mb-3">Vores tilbud</p>
             <h2 className="font-serif text-3xl md:text-5xl text-primary mb-12">
-              Tre måder at arbejde
+              Vores produkter
             </h2>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* AFTER HOURS */}
             <ScrollReveal delay={100}>
               <a
-                href="tel:+4571998877"
+                href="tel:+4530342272"
                 className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
               >
                 <Image
@@ -91,7 +91,7 @@ export default function Home() {
                   <p className="text-white/70 text-sm mb-4">6 kontorer · Ring for pris</p>
                   <span className="inline-flex items-center text-accent-light text-sm">
                     <Phone size={14} className="mr-2" />
-                    71 99 88 77
+                    30 34 22 72
                   </span>
                 </div>
               </a>
@@ -151,6 +151,39 @@ export default function Home() {
                 </div>
               </Link>
             </ScrollReveal>
+
+            {/* PODCAST STUDIE */}
+            <ScrollReveal delay={400}>
+              <a
+                href="https://theofficestudio.dk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
+              >
+                <Image
+                  src="/images/podcast/podcast-studio.jpg"
+                  alt="Podcast Studie"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4">
+                  <span className="inline-flex items-center gap-2 bg-purple-600 text-white text-xs px-3 py-1.5 rounded-full">
+                    <Mic size={12} />
+                    Studio
+                  </span>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-white/60 text-sm mb-1">Lydisoleret rum</p>
+                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Podcast Studie</h3>
+                  <p className="text-white/70 text-sm mb-4">Professionelt udstyr inkl.</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white text-sm">Se mere på theofficestudio.dk</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+                  </div>
+                </div>
+              </a>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -194,10 +227,10 @@ export default function Home() {
                 <div className="relative bg-white/10 backdrop-blur rounded-2xl p-8 md:p-10 text-center">
                   <p className="text-accent-light text-sm tracking-wider uppercase mb-4">Ring til os</p>
                   <a
-                    href="tel:+4571998877"
+                    href="tel:+4530342272"
                     className="block text-4xl md:text-5xl font-bold mb-4 hover:text-accent-light transition-colors"
                   >
-                    71 99 88 77
+                    30 34 22 72
                   </a>
                   <p className="text-white/60 mb-6">Vi finder en løsning der passer dig</p>
                   <Link
@@ -284,11 +317,11 @@ export default function Home() {
                 <ArrowRight className="ml-2" size={18} />
               </Link>
               <a
-                href="tel:+4571998877"
+                href="tel:+4530342272"
                 className="inline-flex items-center justify-center border-2 border-primary text-primary px-8 py-4 rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
               >
                 <Phone className="mr-2" size={18} />
-                71 99 88 77
+                30 34 22 72
               </a>
             </div>
 

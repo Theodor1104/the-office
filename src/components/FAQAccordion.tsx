@@ -35,7 +35,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: 'Hvad er After Hours?',
-    answer: 'After Hours er vores tilbud til dig, der har brug for kontorplads aften og weekend. Alle 6 kontorer er ledige uden for normal åbningstid. Ring til os på +45 71 99 88 77, så finder vi en løsning der passer dig.',
+    answer: 'After Hours er vores tilbud til dig, der har brug for kontorplads aften og weekend. Alle 6 kontorer er ledige uden for normal åbningstid. Ring til os på +45 30 34 22 72, så finder vi en løsning der passer dig.',
   },
 ]
 

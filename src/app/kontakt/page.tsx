@@ -214,10 +214,10 @@ function ContactContent() {
                   <div>
                     <h3 className="font-semibold text-primary">Email</h3>
                     <a
-                      href="mailto:hello@theofficestudio.dk"
+                      href="mailto:michael@timeforlicensing.com"
                       className="mt-1 text-warm-gray hover:text-accent transition-colors"
                     >
-                      hello@theofficestudio.dk
+                      michael@timeforlicensing.com
                     </a>
                   </div>
                 </div>
