@@ -309,53 +309,74 @@ export default function Home() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <ScrollReveal direction="left">
-              <div className="relative">
-                <div className="absolute inset-0 bg-red-500/20 rounded-2xl blur-2xl" />
-                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-8 md:p-10">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full font-medium animate-pulse">
-                      Sidste ledige kontor!
+              <div className="space-y-4">
+                {/* Enkelt plads */}
+                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 md:p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-medium">Enkelt kontorplads</h3>
+                    <span className="bg-accent/20 text-accent-light text-xs px-3 py-1 rounded-full">
+                      Ledig
                     </span>
                   </div>
-                  <div className="mb-6">
-                    <span className="text-5xl md:text-6xl font-bold">{PRICING.office.single_desk.toLocaleString('da-DK')}</span>
-                    <span className="text-xl text-white/60 ml-2">kr/md</span>
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="text-4xl font-bold">{PRICING.office.single_desk.toLocaleString('da-DK')}</span>
+                    <span className="text-white/60">kr/md</span>
                   </div>
-                  <ul className="space-y-3 mb-8">
-                    <li className="flex items-center text-white/80">
-                      <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
-                      Fast skrivebord & ergonomisk stol
-                    </li>
-                    <li className="flex items-center text-white/80">
-                      <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
-                      Gratis mødelokale inkluderet
-                    </li>
-                    <li className="flex items-center text-white/80">
-                      <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
-                      Ingen binding — opsig når som helst
-                    </li>
-                  </ul>
-                  <Link
-                    href="/kontakt?emne=office"
-                    className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors w-full justify-center"
-                  >
-                    Book en rundvisning
-                    <ArrowRight className="ml-2" size={18} />
-                  </Link>
+                  <p className="text-white/60 text-sm">Fast plads i fælles kontor med 4 pladser</p>
                 </div>
+
+                {/* Hele kontoret */}
+                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 md:p-8 border border-accent-light/30">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-medium">Hele kontoret</h3>
+                    <span className="bg-accent-light text-primary text-xs px-3 py-1 rounded-full font-medium">
+                      Spar 2.000 kr/md
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="text-4xl font-bold">{PRICING.office.full_room.toLocaleString('da-DK')}</span>
+                    <span className="text-white/60">kr/md</span>
+                  </div>
+                  <p className="text-white/60 text-sm">Privat kontor med 4 pladser — perfekt til et lille team</p>
+                </div>
+
+                <Link
+                  href="/kontakt?emne=office"
+                  className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors w-full justify-center mt-4"
+                >
+                  Book en rundvisning
+                  <ArrowRight className="ml-2" size={18} />
+                </Link>
               </div>
             </ScrollReveal>
 
             <ScrollReveal direction="right" delay={100}>
-              <p className="text-accent-light text-sm tracking-[0.2em] uppercase mb-4">Kontorplads</p>
+              <span className="inline-block bg-white/10 text-white/80 text-xs px-3 py-1.5 rounded-full mb-4">
+                Kun 1 kontor tilbage
+              </span>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
                 Din faste<br />
                 <span className="italic text-accent-light">arbejdsplads</span>
               </h2>
               <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-lg">
                 Bliv en del af fællesskabet. Fast plads i et inspirerende miljø
-                med andre freelancere, iværksættere og små teams.
+                med andre freelancere, iværksættere og små teams. Ingen binding.
               </p>
+
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-white/80">
+                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                  Gratis mødelokale inkluderet
+                </li>
+                <li className="flex items-center text-white/80">
+                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                  Adgang til køkken, lounge & faciliteter
+                </li>
+                <li className="flex items-center text-white/80">
+                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                  Opsig med 1 måneds varsel
+                </li>
+              </ul>
 
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-white/5 rounded-xl">
