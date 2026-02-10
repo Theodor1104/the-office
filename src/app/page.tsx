@@ -34,19 +34,19 @@ export default function Home() {
               <p className="text-xl md:text-2xl text-white/80 mb-8">
                 Mødelokale · Kontorplads · After Hours
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href="/book"
-                  className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
+                  className="inline-flex items-center justify-center bg-white text-primary px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-accent-light transition-colors text-base"
                 >
                   Book mødelokale
                   <ArrowRight className="ml-2" size={18} />
                 </Link>
                 <a
                   href="tel:+4530342272"
-                  className="inline-flex items-center bg-white/10 backdrop-blur text-white px-6 py-3 rounded-full font-medium hover:bg-white/20 transition-colors"
+                  className="inline-flex items-center justify-center bg-white/10 backdrop-blur text-white px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-white/20 transition-colors text-base"
                 >
-                  <Phone className="mr-2" size={16} />
+                  <Phone className="mr-2" size={18} />
                   30 34 22 72
                 </a>
               </div>
@@ -66,12 +66,12 @@ export default function Home() {
       <section className="pt-8 pb-20 md:pt-12 md:pb-28 bg-background -mt-1">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-5xl text-primary mb-12">
+            <h2 className="font-serif text-3xl md:text-5xl text-primary mb-8 md:mb-12">
               Vores tilbud
             </h2>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {/* AFTER HOURS */}
             <ScrollReveal delay={100}>
               <a
@@ -85,18 +85,18 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center gap-2 bg-accent text-white text-xs px-3 py-1.5 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-accent text-white text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                    <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-green-400 animate-pulse" />
                     Nyt
                   </span>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white/60 text-sm mb-1">Aften & weekend</p>
-                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">After Hours</h3>
-                  <p className="text-white/70 text-sm mb-4">6 kontorer · Ring for pris</p>
-                  <span className="inline-flex items-center text-accent-light text-sm">
-                    <Phone size={14} className="mr-2" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                  <p className="text-white/60 text-xs sm:text-sm mb-1">Aften & weekend</p>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">After Hours</h3>
+                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">6 kontorer · Ring for pris</p>
+                  <span className="inline-flex items-center text-accent-light text-xs sm:text-sm">
+                    <Phone size={14} className="mr-1 sm:mr-2" />
                     30 34 22 72
                   </span>
                 </div>
@@ -116,13 +116,13 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white/60 text-sm mb-1">Op til 8 personer</p>
-                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Mødelokale</h3>
-                  <p className="text-white/70 text-sm mb-4">Projektor · Whiteboard · Kaffe</p>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                  <p className="text-white/60 text-xs sm:text-sm mb-1">Op til 8 personer</p>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">Mødelokale</h3>
+                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">Projektor · Whiteboard · Kaffe</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-white text-xl font-medium">{PRICING.meeting_room.guest_per_day} kr/dag</span>
-                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+                    <span className="text-white text-base sm:text-xl font-medium">{PRICING.meeting_room.guest_per_day} kr/dag</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
                   </div>
                 </div>
               </Link>
@@ -141,18 +141,18 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-red-500 text-white text-xs px-3 py-1.5 rounded-full font-medium">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <span className="bg-red-500 text-white text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-medium">
                     Kun 1 tilbage
                   </span>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white/60 text-sm mb-1">Fast plads · Ingen binding</p>
-                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Kontorplads</h3>
-                  <p className="text-white/70 text-sm mb-4">+ gratis mødelokale</p>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                  <p className="text-white/60 text-xs sm:text-sm mb-1 hidden sm:block">Fast plads · Ingen binding</p>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">Kontorplads</h3>
+                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">+ gratis mødelokale</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-white text-xl font-medium">{PRICING.office.single_desk.toLocaleString('da-DK')} kr/md</span>
-                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+                    <span className="text-white text-base sm:text-xl font-medium">{PRICING.office.single_desk.toLocaleString('da-DK')} kr/md</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
                   </div>
                 </div>
               </Link>
@@ -173,19 +173,19 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center gap-2 bg-purple-600 text-white text-xs px-3 py-1.5 rounded-full">
-                    <Mic size={12} />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <span className="inline-flex items-center gap-1 sm:gap-2 bg-purple-600 text-white text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                    <Mic size={10} className="sm:w-3 sm:h-3" />
                     Studio
                   </span>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white/60 text-sm mb-1">Lydisoleret rum</p>
-                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Podcast Studie</h3>
-                  <p className="text-white/70 text-sm mb-4">Professionelt udstyr inkl.</p>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                  <p className="text-white/60 text-xs sm:text-sm mb-1 hidden sm:block">Lydisoleret rum</p>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">Podcast Studie</h3>
+                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">Professionelt udstyr inkl.</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-white text-sm">Se mere på theofficestudio.dk</span>
-                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+                    <span className="text-white text-xs sm:text-sm">theofficestudio.dk</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
                   </div>
                 </div>
               </a>
@@ -211,18 +211,18 @@ export default function Home() {
                 hvorfor ikke bruge dem?
               </p>
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <Clock className="mx-auto mb-2 text-accent-light" size={24} />
-                  <p className="text-sm text-white/70">Fleksible tider</p>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-8">
+                <div className="text-center p-3 sm:p-4 bg-white/5 rounded-xl">
+                  <Clock className="mx-auto mb-1 sm:mb-2 text-accent-light" size={20} />
+                  <p className="text-xs sm:text-sm text-white/70">Fleksible tider</p>
                 </div>
-                <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <Users className="mx-auto mb-2 text-accent-light" size={24} />
-                  <p className="text-sm text-white/70">6 kontorer</p>
+                <div className="text-center p-3 sm:p-4 bg-white/5 rounded-xl">
+                  <Users className="mx-auto mb-1 sm:mb-2 text-accent-light" size={20} />
+                  <p className="text-xs sm:text-sm text-white/70">6 kontorer</p>
                 </div>
-                <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <Coffee className="mx-auto mb-2 text-accent-light" size={24} />
-                  <p className="text-sm text-white/70">Alle faciliteter</p>
+                <div className="text-center p-3 sm:p-4 bg-white/5 rounded-xl">
+                  <Coffee className="mx-auto mb-1 sm:mb-2 text-accent-light" size={20} />
+                  <p className="text-xs sm:text-sm text-white/70">Alle faciliteter</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -230,18 +230,18 @@ export default function Home() {
             <ScrollReveal direction="right" delay={100}>
               <div className="relative">
                 <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-2xl" />
-                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-8 md:p-10 text-center">
-                  <p className="text-accent-light text-sm tracking-wider uppercase mb-4">Ring til os</p>
+                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8 md:p-10 text-center">
+                  <p className="text-accent-light text-xs sm:text-sm tracking-wider uppercase mb-3 sm:mb-4">Ring til os</p>
                   <a
                     href="tel:+4530342272"
-                    className="block text-4xl md:text-5xl font-bold mb-4 hover:text-accent-light transition-colors"
+                    className="block text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 hover:text-accent-light transition-colors py-2"
                   >
                     30 34 22 72
                   </a>
-                  <p className="text-white/60 mb-6">Vi finder en løsning der passer dig</p>
+                  <p className="text-white/60 mb-4 sm:mb-6 text-sm sm:text-base">Vi finder en løsning der passer dig</p>
                   <Link
                     href="/kontakt?emne=afterhours"
-                    className="inline-flex items-center text-accent-light hover:text-white transition-colors text-sm"
+                    className="inline-flex items-center justify-center text-accent-light hover:text-white transition-colors text-sm py-2 w-full sm:w-auto"
                   >
                     Eller send en besked
                     <ArrowRight className="ml-2" size={16} />
@@ -277,22 +277,22 @@ export default function Home() {
                 Whiteboard, projektor, videokonference og god kaffe.
               </p>
 
-              <div className="flex flex-wrap gap-3 mb-8">
-                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">8 personer</span>
-                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">Projektor</span>
-                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">Whiteboard</span>
-                <span className="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm text-white/80">Kaffe</span>
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
+                <span className="bg-white/10 backdrop-blur px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm text-white/80">8 personer</span>
+                <span className="bg-white/10 backdrop-blur px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm text-white/80">Projektor</span>
+                <span className="bg-white/10 backdrop-blur px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm text-white/80">Whiteboard</span>
+                <span className="bg-white/10 backdrop-blur px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm text-white/80">Kaffe</span>
               </div>
 
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
                 <Link
                   href="/book"
-                  className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
+                  className="inline-flex items-center justify-center bg-white text-primary px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
                 >
                   Book nu
                   <ArrowRight className="ml-2" size={18} />
                 </Link>
-                <div className="text-white">
+                <div className="text-white text-center sm:text-left">
                   <span className="text-2xl font-semibold">{PRICING.meeting_room.guest_per_day} kr</span>
                   <span className="text-white/60 text-sm ml-2">/ dag</span>
                 </div>
@@ -307,90 +307,91 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <ScrollReveal direction="left">
-              <div className="space-y-4">
-                {/* Enkelt plads */}
-                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 md:p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium">Enkelt kontorplads</h3>
-                    <span className="bg-accent/20 text-accent-light text-xs px-3 py-1 rounded-full">
-                      Ledig
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-bold">{PRICING.office.single_desk.toLocaleString('da-DK')}</span>
-                    <span className="text-white/60">kr/md</span>
-                  </div>
-                  <p className="text-white/60 text-sm">Fast plads i fælles kontor med 4 pladser</p>
-                </div>
-
-                {/* Hele kontoret */}
-                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 md:p-8 border border-accent-light/30">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium">Hele kontoret</h3>
-                    <span className="bg-accent-light text-primary text-xs px-3 py-1 rounded-full font-medium">
-                      Spar 2.000 kr/md
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-bold">{PRICING.office.full_room.toLocaleString('da-DK')}</span>
-                    <span className="text-white/60">kr/md</span>
-                  </div>
-                  <p className="text-white/60 text-sm">Privat kontor med 4 pladser — perfekt til et lille team</p>
-                </div>
-
-                <Link
-                  href="/kontakt?emne=office"
-                  className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-accent-light transition-colors w-full justify-center mt-4"
-                >
-                  Book en rundvisning
-                  <ArrowRight className="ml-2" size={18} />
-                </Link>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="right" delay={100}>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+            {/* On mobile: text first, then cards */}
+            <ScrollReveal direction="right" delay={100} className="order-1 lg:order-2">
               <span className="inline-block bg-white/10 text-white/80 text-xs px-3 py-1.5 rounded-full mb-4">
                 Kun 1 kontor tilbage
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 sm:mb-6">
                 Din faste<br />
                 <span className="italic text-accent-light">arbejdsplads</span>
               </h2>
-              <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-lg">
+              <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-6 sm:mb-8 max-w-lg">
                 Bliv en del af fællesskabet. Fast plads i et inspirerende miljø
                 med andre freelancere, iværksættere og små teams. Ingen binding.
               </p>
 
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-white/80">
-                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+              <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
+                <li className="flex items-center text-white/80 text-sm sm:text-base">
+                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3 flex-shrink-0" />
                   Gratis mødelokale inkluderet
                 </li>
-                <li className="flex items-center text-white/80">
-                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                <li className="flex items-center text-white/80 text-sm sm:text-base">
+                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3 flex-shrink-0" />
                   Adgang til køkken, lounge & faciliteter
                 </li>
-                <li className="flex items-center text-white/80">
-                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3" />
+                <li className="flex items-center text-white/80 text-sm sm:text-base">
+                  <span className="w-1.5 h-1.5 bg-accent-light rounded-full mr-3 flex-shrink-0" />
                   Opsig med 1 måneds varsel
                 </li>
               </ul>
 
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <Users className="mx-auto mb-2 text-accent-light" size={24} />
-                  <p className="text-sm text-white/70">Fællesskab</p>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                <div className="text-center p-3 sm:p-4 bg-white/5 rounded-xl">
+                  <Users className="mx-auto mb-1 sm:mb-2 text-accent-light" size={20} />
+                  <p className="text-xs sm:text-sm text-white/70">Fællesskab</p>
                 </div>
-                <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <Coffee className="mx-auto mb-2 text-accent-light" size={24} />
-                  <p className="text-sm text-white/70">Gratis kaffe</p>
+                <div className="text-center p-3 sm:p-4 bg-white/5 rounded-xl">
+                  <Coffee className="mx-auto mb-1 sm:mb-2 text-accent-light" size={20} />
+                  <p className="text-xs sm:text-sm text-white/70">Gratis kaffe</p>
                 </div>
-                <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <MapPin className="mx-auto mb-2 text-accent-light" size={24} />
-                  <p className="text-sm text-white/70">2 min til metro</p>
+                <div className="text-center p-3 sm:p-4 bg-white/5 rounded-xl">
+                  <MapPin className="mx-auto mb-1 sm:mb-2 text-accent-light" size={20} />
+                  <p className="text-xs sm:text-sm text-white/70">2 min til metro</p>
                 </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="left" className="order-2 lg:order-1">
+              <div className="space-y-3 sm:space-y-4">
+                {/* Enkelt plads */}
+                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-5 sm:p-6 md:p-8">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <h3 className="text-base sm:text-lg font-medium">Enkelt kontorplads</h3>
+                    <span className="bg-accent/20 text-accent-light text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full">
+                      Ledig
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-2 mb-2 sm:mb-4">
+                    <span className="text-3xl sm:text-4xl font-bold">{PRICING.office.single_desk.toLocaleString('da-DK')}</span>
+                    <span className="text-white/60 text-sm">kr/md</span>
+                  </div>
+                  <p className="text-white/60 text-xs sm:text-sm">Fast plads i fælles kontor med 4 pladser</p>
+                </div>
+
+                {/* Hele kontoret */}
+                <div className="relative bg-white/10 backdrop-blur rounded-2xl p-5 sm:p-6 md:p-8 border border-accent-light/30">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <h3 className="text-base sm:text-lg font-medium">Hele kontoret</h3>
+                    <span className="bg-accent-light text-primary text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full font-medium">
+                      Spar 2.000 kr/md
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-2 mb-2 sm:mb-4">
+                    <span className="text-3xl sm:text-4xl font-bold">{PRICING.office.full_room.toLocaleString('da-DK')}</span>
+                    <span className="text-white/60 text-sm">kr/md</span>
+                  </div>
+                  <p className="text-white/60 text-xs sm:text-sm">Privat kontor med 4 pladser — perfekt til et lille team</p>
+                </div>
+
+                <Link
+                  href="/kontakt?emne=office"
+                  className="inline-flex items-center bg-white text-primary px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-accent-light transition-colors w-full justify-center mt-2 sm:mt-4"
+                >
+                  Book en rundvisning
+                  <ArrowRight className="ml-2" size={18} />
+                </Link>
               </div>
             </ScrollReveal>
           </div>
@@ -398,35 +399,35 @@ export default function Home() {
       </section>
 
       {/* ===== FINAL CTA ===== */}
-      <section className="py-20 md:py-28 bg-secondary">
+      <section className="py-16 sm:py-20 md:py-28 bg-secondary">
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
           <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-5xl text-primary mb-6">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl text-primary mb-4 sm:mb-6">
               Klar til at komme i gang?
             </h2>
-            <p className="text-lg text-warm-gray mb-10">
+            <p className="text-base sm:text-lg text-warm-gray mb-8 sm:mb-10">
               Book mødelokale online, ring om After Hours,
               eller kom forbi til en rundvisning.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-accent-hover transition-colors"
+                className="inline-flex items-center justify-center bg-primary text-white px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-accent-hover transition-colors"
               >
                 Book mødelokale
                 <ArrowRight className="ml-2" size={18} />
               </Link>
               <a
                 href="tel:+4530342272"
-                className="inline-flex items-center justify-center border-2 border-primary text-primary px-8 py-4 rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
+                className="inline-flex items-center justify-center border-2 border-primary text-primary px-6 sm:px-8 py-4 rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
               >
                 <Phone className="mr-2" size={18} />
                 30 34 22 72
               </a>
             </div>
 
-            <div className="flex items-center justify-center gap-2 text-warm-gray">
+            <div className="flex items-center justify-center gap-2 text-warm-gray text-sm sm:text-base">
               <MapPin size={16} />
               <span>Martensens Allé 8, 1828 Frederiksberg</span>
             </div>

@@ -131,34 +131,34 @@ export default function Navigation() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white/80 hover:text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors"
+                  className="text-white/80 hover:text-white hover:bg-white/10 px-4 py-4 rounded-lg transition-colors text-base"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-white/10 space-y-3">
+            <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
               <a
                 href="tel:+4530342272"
-                className="flex items-center gap-2 text-white/70 px-4"
+                className="flex items-center gap-3 text-white bg-white/10 px-4 py-4 rounded-lg"
               >
-                <Phone size={16} />
-                <span>30 34 22 72</span>
+                <Phone size={20} />
+                <span className="text-base font-medium">30 34 22 72</span>
               </a>
               {!isLoading && (user ? (
                 <Link
                   href="/min-side"
-                  className="flex items-center gap-2 text-white px-4 py-3"
+                  className="flex items-center gap-3 text-white bg-white/10 px-4 py-4 rounded-lg"
                   onClick={() => setIsOpen(false)}
                 >
-                  <User size={18} />
-                  <span>Min side</span>
+                  <User size={20} />
+                  <span className="text-base font-medium">Min side</span>
                 </Link>
               ) : (
                 <Link
                   href="/login"
-                  className="block bg-white text-primary px-4 py-3 rounded-lg font-medium text-center mx-4"
+                  className="block bg-white text-primary px-4 py-4 rounded-lg font-medium text-center text-base"
                   onClick={() => setIsOpen(false)}
                 >
                   Log ind
