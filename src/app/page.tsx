@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Phone, MapPin, Clock, Users, Coffee } from 'lucide-react'
+import { ArrowRight, Phone, MapPin, Clock, Users, Coffee, Mic } from 'lucide-react'
 import { PRICING } from '@/lib/types'
 import ScrollReveal from '@/components/ScrollReveal'
 
@@ -61,11 +61,11 @@ export default function Home() {
           <ScrollReveal>
             <p className="text-accent text-sm tracking-[0.2em] uppercase mb-3">Vores tilbud</p>
             <h2 className="font-serif text-3xl md:text-5xl text-primary mb-12">
-              Tre måder at arbejde
+              Vores produkter
             </h2>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* AFTER HOURS */}
             <ScrollReveal delay={100}>
               <a
@@ -152,7 +152,39 @@ export default function Home() {
               </Link>
             </ScrollReveal>
 
-            </div>
+            {/* PODCAST STUDIE */}
+            <ScrollReveal delay={400}>
+              <a
+                href="https://theofficestudio.dk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
+              >
+                <Image
+                  src="/images/podcast/podcast-studio.jpg"
+                  alt="Podcast Studie"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4">
+                  <span className="inline-flex items-center gap-2 bg-purple-600 text-white text-xs px-3 py-1.5 rounded-full">
+                    <Mic size={12} />
+                    Studio
+                  </span>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-white/60 text-sm mb-1">Lydisoleret rum</p>
+                  <h3 className="font-serif text-2xl md:text-3xl text-white mb-2">Podcast Studie</h3>
+                  <p className="text-white/70 text-sm mb-4">Professionelt udstyr inkl.</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white text-sm">Se mere på theofficestudio.dk</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" size={20} />
+                  </div>
+                </div>
+              </a>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

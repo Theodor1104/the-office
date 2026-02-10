@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Check, Star } from 'lucide-react'
+import { ArrowRight, Check, Star, Mic } from 'lucide-react'
 import { PRICING } from '@/lib/types'
 import { Metadata } from 'next'
 
@@ -235,6 +235,57 @@ export default function PricingPage() {
               >
                 Book mødelokale
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Podcast Studio */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 bg-purple-600 text-white text-sm px-3 py-1 rounded-full">
+              <Mic size={14} />
+              Studio
+            </span>
+            <h2 className="mt-4 text-3xl md:text-4xl font-serif text-primary">
+              Podcast Studie
+            </h2>
+            <p className="mt-4 text-warm-gray max-w-2xl mx-auto">
+              Professionelt lydstudie til podcastere, lydbogsindlæsere og content creators.
+              Lydisoleret rum med professionelt udstyr.
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-xl p-8 shadow text-center">
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center justify-center text-sm text-warm-gray">
+                  <Check className="text-green-600 mr-2" size={16} />
+                  Lydisoleret rum
+                </li>
+                <li className="flex items-center justify-center text-sm text-warm-gray">
+                  <Check className="text-green-600 mr-2" size={16} />
+                  Professionelle mikrofoner
+                </li>
+                <li className="flex items-center justify-center text-sm text-warm-gray">
+                  <Check className="text-green-600 mr-2" size={16} />
+                  Mulighed for video
+                </li>
+                <li className="flex items-center justify-center text-sm text-warm-gray">
+                  <Check className="text-green-600 mr-2" size={16} />
+                  Teknisk assistance tilgængelig
+                </li>
+              </ul>
+              <a
+                href="https://theofficestudio.dk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+              >
+                Se priser på theofficestudio.dk
+                <ArrowRight className="ml-2" size={18} />
+              </a>
             </div>
           </div>
         </div>
