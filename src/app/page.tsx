@@ -59,9 +59,8 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-background">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <ScrollReveal>
-            <p className="text-accent text-sm tracking-[0.2em] uppercase mb-3">Vores tilbud</p>
             <h2 className="font-serif text-3xl md:text-5xl text-primary mb-12">
-              Vores produkter
+              Vores tilbud
             </h2>
           </ScrollReveal>
 
