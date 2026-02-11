@@ -2,15 +2,36 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState, useEffect, useMemo } from 'react'
 import { ArrowRight, Phone, MapPin, Clock, Users, Coffee, Mic } from 'lucide-react'
 import { PRICING } from '@/lib/types'
+import { createClient } from '@/lib/supabase/client'
 import ScrollReveal from '@/components/ScrollReveal'
 
 export default function Home() {
+  const [isMember, setIsMember] = useState(false)
+  const supabase = useMemo(() => createClient(), [])
+
+  useEffect(() => {
+    const checkMembership = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.user) {
+        // Check if user is a member (has office space)
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('is_member')
+          .eq('id', session.user.id)
+          .single()
+
+        setIsMember(profile?.is_member === true)
+      }
+    }
+    checkMembership()
+  }, [supabase])
   return (
     <div className="overflow-hidden">
       {/* ===== HERO — Full-screen, image-focused ===== */}
-      <section className="h-[70vh] min-h-[500px] relative flex items-end">
+      <section className="h-screen relative flex items-end">
         <Image
           src="/images/hero.jpg"
           alt="The Office"
@@ -54,16 +75,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Curved transition to next section */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" preserveAspectRatio="none">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="var(--background)"/>
-          </svg>
-        </div>
       </section>
 
       {/* ===== PRODUCTS — Visual cards ===== */}
-      <section className="pt-8 pb-20 md:pt-12 md:pb-28 bg-background -mt-1">
+      <section className="py-20 md:py-28 bg-background">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <ScrollReveal>
             <h2 className="font-serif text-3xl md:text-5xl text-primary mb-8 md:mb-12">
@@ -285,13 +300,23 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-                <Link
-                  href="/book"
-                  className="inline-flex items-center justify-center bg-white text-primary px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
-                >
-                  Book nu
-                  <ArrowRight className="ml-2" size={18} />
-                </Link>
+                {isMember ? (
+                  <Link
+                    href="/book"
+                    className="inline-flex items-center justify-center bg-white text-primary px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
+                  >
+                    Book nu
+                    <ArrowRight className="ml-2" size={18} />
+                  </Link>
+                ) : (
+                  <Link
+                    href="/kontakt?emne=meeting"
+                    className="inline-flex items-center justify-center bg-white text-primary px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-accent-light transition-colors"
+                  >
+                    Kontakt os
+                    <ArrowRight className="ml-2" size={18} />
+                  </Link>
+                )}
                 <div className="text-white text-center sm:text-left">
                   <span className="text-2xl font-semibold">{PRICING.meeting_room.guest_per_day} kr</span>
                   <span className="text-white/60 text-sm ml-2">/ dag</span>
