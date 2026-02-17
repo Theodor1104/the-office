@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Users, Heart, Handshake, Target, ArrowRight } from 'lucide-react'
 import { Metadata } from 'next'
 
@@ -20,8 +21,8 @@ export default function AboutPage() {
             Om <span className="font-semibold">The Office</span>
           </h1>
           <p className="mt-6 text-xl text-accent-light max-w-2xl">
-            Mere end bare et kontor - et fællesskab af ambitiøse mennesker,
-            der arbejder sammen mod deres mål.
+            Et kontorfællesskab skabt af iværksættere, for iværksættere.
+            Her mødes produktivitet og fællesskab.
           </p>
         </div>
       </section>
@@ -35,27 +36,35 @@ export default function AboutPage() {
                 Vores <span className="font-semibold">historie</span>
               </h2>
               <p className="mt-6 text-warm-gray leading-relaxed">
-                The Office blev skabt ud fra en simpel idé: At give iværksættere,
-                freelancere og små virksomheder et sted, hvor de kan arbejde
-                professionelt uden at miste fleksibiliteten.
+                The Office kontorfællesskabet blev skabt ud fra en enkel idé: At give iværksættere,
+                freelancere og små virksomheder et professionelt sted at arbejde – uden at gå på
+                kompromis med fleksibiliteten.
               </p>
               <p className="mt-4 text-warm-gray leading-relaxed">
-                Beliggende i hjertet af Frederiksberg, kun 2 minutter fra metroen,
-                tilbyder vi et miljø, hvor produktivitet møder fællesskab.
-                Vores medlemmer er en blanding af kreative, tech-folk,
-                konsulenter og mange andre brancher.
+                Beliggende i hjertet af Frederiksberg, kun to minutter fra metroen og omgivet af
+                caféer og restauranter, tilbyder vi et miljø, hvor produktivitet møder fællesskab.
+                Vores medlemmer er en nøje udvalgt blanding af kreative profiler, tech-specialister,
+                konsulenter og selvstændige med ambitioner.
               </p>
               <p className="mt-4 text-warm-gray leading-relaxed">
-                Vi tror på, at de bedste idéer opstår, når mennesker mødes.
-                Derfor har vi skabt et rum, der fremmer både fokuseret arbejde
-                og spontane samtaler ved kaffemaskinen.
+                Vi tror på, at de bedste idéer opstår, når mennesker mødes. Derfor har vi skabt et
+                kontorfællesskab, der giver plads til både fordybelse og de spontane samtaler ved
+                kaffemaskinen – for det er ofte her, nye tanker og samarbejder begynder.
+              </p>
+              <p className="mt-4 text-warm-gray leading-relaxed">
+                Kontorfællesskabet er skabt og drevet af Oscar og Michael Benzon – søn og far – som
+                begge er iværksættere med mange projekter i gang. The Office er bygget på egne
+                erfaringer med, hvad et moderne arbejdsmiljø bør kunne: skabe værdi, relationer og
+                rum til at vokse.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-secondary to-surface rounded-xl aspect-square flex items-center justify-center">
-              <div className="text-center text-accent/50">
-                <Users size={120} />
-                <p className="mt-4 text-sm">Billede af teamet</p>
-              </div>
+            <div className="relative rounded-xl overflow-hidden aspect-square">
+              <Image
+                src="/images/about/founders.jpg"
+                alt="Oscar og Michael Benzon - grundlæggere af The Office"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

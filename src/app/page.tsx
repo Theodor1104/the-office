@@ -87,64 +87,8 @@ export default function Home() {
           </ScrollReveal>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {/* AFTER HOURS */}
-            <ScrollReveal delay={100}>
-              <a
-                href="tel:+4530342272"
-                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
-              >
-                <Image
-                  src="/images/hero.jpg"
-                  alt="After Hours"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                  <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-accent text-white text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
-                    <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    Nyt
-                  </span>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                  <p className="text-white/60 text-xs sm:text-sm mb-1">Aften & weekend</p>
-                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">After Hours</h3>
-                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">6 kontorer · Ring for pris</p>
-                  <span className="inline-flex items-center text-accent-light text-xs sm:text-sm">
-                    <Phone size={14} className="mr-1 sm:mr-2" />
-                    30 34 22 72
-                  </span>
-                </div>
-              </a>
-            </ScrollReveal>
-
-            {/* MØDELOKALE */}
-            <ScrollReveal delay={200}>
-              <Link
-                href="/book"
-                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
-              >
-                <Image
-                  src="/images/meeting/meeting-room.jpg"
-                  alt="Mødelokale"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                  <p className="text-white/60 text-xs sm:text-sm mb-1">Op til 8 personer</p>
-                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">Mødelokale</h3>
-                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">Projektor · Whiteboard · Kaffe</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white text-base sm:text-xl font-medium">{PRICING.meeting_room.guest_per_day} kr/dag</span>
-                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
-                  </div>
-                </div>
-              </Link>
-            </ScrollReveal>
-
             {/* KONTORPLADS */}
-            <ScrollReveal delay={300}>
+            <ScrollReveal delay={100}>
               <Link
                 href="/kontakt?emne=office"
                 className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
@@ -167,6 +111,62 @@ export default function Home() {
                   <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">+ gratis mødelokale</p>
                   <div className="flex items-center justify-between">
                     <span className="text-white text-base sm:text-xl font-medium">{PRICING.office.single_desk.toLocaleString('da-DK')} kr/md</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            {/* MØDELOKALE */}
+            <ScrollReveal delay={200}>
+              <Link
+                href="/kontakt?emne=meeting"
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
+              >
+                <Image
+                  src="/images/meeting/meeting-room.jpg"
+                  alt="Mødelokale"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                  <p className="text-white/60 text-xs sm:text-sm mb-1">Op til 8 personer</p>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">Mødelokale</h3>
+                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">Projektor · Whiteboard · Kaffe</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white text-base sm:text-xl font-medium">{PRICING.meeting_room.guest_per_day} kr/dag</span>
+                    <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            {/* AFTER HOURS */}
+            <ScrollReveal delay={300}>
+              <Link
+                href="/kontakt?emne=afterhours"
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
+              >
+                <Image
+                  src="/images/hero.jpg"
+                  alt="After Hours"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-accent text-white text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                    <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    Nyt
+                  </span>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                  <p className="text-white/60 text-xs sm:text-sm mb-1">Aften & weekend</p>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">After Hours</h3>
+                  <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">6 kontorer · Fleksibel pris</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white text-base sm:text-xl font-medium">Kontakt os</span>
                     <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
                   </div>
                 </div>
