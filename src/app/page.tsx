@@ -33,7 +33,7 @@ export default function Home() {
       {/* ===== HERO — Full-screen, image-focused ===== */}
       <section className="h-screen relative flex items-end">
         <Image
-          src="/images/hero.jpg"
+          src="/images/lounge/lounge.jpg"
           alt="The Office"
           fill
           className="object-cover"
@@ -120,7 +120,7 @@ export default function Home() {
             {/* MØDELOKALE */}
             <ScrollReveal delay={200}>
               <Link
-                href="/kontakt?emne=meeting"
+                href={isMember ? "/book" : "/kontakt?emne=meeting"}
                 className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
               >
                 <Image
@@ -135,7 +135,7 @@ export default function Home() {
                   <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mb-1 sm:mb-2">Mødelokale</h3>
                   <p className="text-white/70 text-xs sm:text-sm mb-2 sm:mb-4 hidden sm:block">Projektor · Whiteboard · Kaffe</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-white text-base sm:text-xl font-medium">{PRICING.meeting_room.guest_per_day} kr/dag</span>
+                    <span className="text-white text-base sm:text-xl font-medium">{isMember ? "Gratis" : `${PRICING.meeting_room.guest_per_day} kr/dag`}</span>
                     <ArrowRight className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all hidden sm:block" size={20} />
                   </div>
                 </div>
