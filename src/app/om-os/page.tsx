@@ -60,7 +60,7 @@ export default function AboutPage() {
             </div>
             <div className="relative rounded-xl overflow-hidden aspect-square">
               <Image
-                src="/images/about/founders.jpg"
+                src="/images/about/loung.png"
                 alt="Oscar og Michael Benzon - grundlæggere af The Office"
                 fill
                 className="object-cover"
