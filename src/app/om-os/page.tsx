@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Users, Heart, Handshake, Target, ArrowRight } from 'lucide-react'
+import { Users, Handshake, Target, ArrowRight } from 'lucide-react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -121,44 +121,34 @@ export default function AboutPage() {
 
       {/* Community */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 bg-gradient-to-br from-primary to-accent rounded-xl aspect-video flex items-center justify-center">
-              <div className="text-center text-white/50">
-                <Heart size={80} />
-                <p className="mt-4 text-sm">Billede af fællesskabet</p>
-              </div>
-            </div>
-            <div className="order-1 md:order-2">
-              <h2 className="text-3xl font-serif text-primary">
-                Et fællesskab,<br />
-                <span className="font-semibold">der støtter dig</span>
-              </h2>
-              <p className="mt-6 text-warm-gray leading-relaxed">
-                Hos The Office er du aldrig alene. Vores medlemmer hjælper
-                hinanden med feedback, sparring og netværk. Vi arrangerer
-                regelmæssige events, hvor du kan møde ligesindede.
-              </p>
-              <ul className="mt-6 space-y-3">
-                <li className="flex items-center text-warm-gray">
-                  <span className="text-green-600 mr-3">✓</span>
-                  Månedlige netværksarrangementer
-                </li>
-                <li className="flex items-center text-warm-gray">
-                  <span className="text-green-600 mr-3">✓</span>
-                  Fælles frokost og kaffepause
-                </li>
-                <li className="flex items-center text-warm-gray">
-                  <span className="text-green-600 mr-3">✓</span>
-                  Slack-kanal for members only
-                </li>
-                <li className="flex items-center text-warm-gray">
-                  <span className="text-green-600 mr-3">✓</span>
-                  Adgang til ekspertise på tværs af brancher
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-serif text-primary">
+            Et fællesskab,<br />
+            <span className="font-semibold">der støtter dig</span>
+          </h2>
+          <p className="mt-6 text-warm-gray leading-relaxed">
+            Hos The Office er du aldrig alene. Vores medlemmer hjælper
+            hinanden med feedback, sparring og netværk. Vi arrangerer
+            regelmæssige events, hvor du kan møde ligesindede.
+          </p>
+          <ul className="mt-6 space-y-3 inline-block text-left">
+            <li className="flex items-center text-warm-gray">
+              <span className="text-green-600 mr-3">✓</span>
+              Månedlige netværksarrangementer
+            </li>
+            <li className="flex items-center text-warm-gray">
+              <span className="text-green-600 mr-3">✓</span>
+              Fælles frokost og kaffepause
+            </li>
+            <li className="flex items-center text-warm-gray">
+              <span className="text-green-600 mr-3">✓</span>
+              Slack-kanal for members only
+            </li>
+            <li className="flex items-center text-warm-gray">
+              <span className="text-green-600 mr-3">✓</span>
+              Adgang til ekspertise på tværs af brancher
+            </li>
+          </ul>
         </div>
       </section>
 
