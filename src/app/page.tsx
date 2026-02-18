@@ -57,10 +57,10 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
-                  href="/book"
+                  href="/kontakt?emne=tour"
                   className="inline-flex items-center justify-center bg-white text-primary px-6 py-4 sm:py-3 rounded-full font-medium hover:bg-accent-light transition-colors text-base"
                 >
-                  Book mødelokale
+                  Book rundvisning
                   <ArrowRight className="ml-2" size={18} />
                 </Link>
                 <a
