@@ -33,7 +33,7 @@ export default function Home() {
       {/* ===== HERO — Full-screen, image-focused ===== */}
       <section className="h-screen relative flex items-end">
         <Image
-          src="/images/hero.jpg"
+          src="/images/meeting/meeting-room.jpg"
           alt="The Office"
           fill
           className="object-cover"
@@ -149,7 +149,7 @@ export default function Home() {
                 className="group relative aspect-[4/5] rounded-2xl overflow-hidden block"
               >
                 <Image
-                  src="/images/hero.jpg"
+                  src="/images/lounge/lounge.jpg"
                   alt="After Hours"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
