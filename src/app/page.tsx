@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* ===== HERO — Full-screen, image-focused ===== */}
-      <section className="h-screen relative flex items-end">
+      <section className="h-[60vh] md:h-[85vh] relative flex items-end">
         <Image
           src="/images/meeting/meeting-room.jpg"
           alt="The Office"
