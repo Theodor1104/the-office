@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: 'Oplev vores moderne faciliteter: Professionelt mødelokale, køkken, lounge og lydisoleret podcast-studie. Alt inkluderet.',
   keywords: ['coworking faciliteter', 'mødelokale Frederiksberg', 'kontorfællesskab faciliteter', 'podcast studie København'],
   alternates: {
-    canonical: 'https://theofficeee.netlify.app/faciliteter',
+    canonical: 'https://the-office.dk/faciliteter',
   },
 }
 

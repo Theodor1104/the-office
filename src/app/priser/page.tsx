@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Se priser for kontorplads fra 2.500 kr/md og mødelokale fra 750 kr/dag. Medlemmer booker gratis. Ingen binding.',
   keywords: ['kontorplads pris', 'mødelokale pris København', 'coworking priser Frederiksberg'],
   alternates: {
-    canonical: 'https://theofficeee.netlify.app/priser',
+    canonical: 'https://the-office.dk/priser',
   },
 }
 

@@ -2,11 +2,11 @@ export default function StructuredData() {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://theofficeee.netlify.app/#business',
+    '@id': 'https://the-office.dk/#business',
     name: 'The Office Frederiksberg',
     alternateName: 'The Office Coworking',
     description: 'Professionelt coworking space i hjertet af Frederiksberg. Book mødelokale eller lej kontorplads.',
-    url: 'https://theofficeee.netlify.app',
+    url: 'https://the-office.dk',
     telephone: '+45 XX XX XX XX',
     email: 'kontakt@theoffice.dk',
     address: {
@@ -32,7 +32,7 @@ export default function StructuredData() {
     ],
     priceRange: '$$',
     image: [
-      'https://theofficeee.netlify.app/images/hero.jpg',
+      'https://the-office.dk/images/hero.jpg',
     ],
     sameAs: [
       'https://www.facebook.com/theofficefrederiksberg',
@@ -67,8 +67,8 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'The Office Frederiksberg',
-    url: 'https://theofficeee.netlify.app',
-    logo: 'https://theofficeee.netlify.app/images/logo.png',
+    url: 'https://the-office.dk',
+    logo: 'https://the-office.dk/images/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+45 XX XX XX XX',
@@ -81,10 +81,10 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'The Office Frederiksberg',
-    url: 'https://theofficeee.netlify.app',
+    url: 'https://the-office.dk',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://theofficeee.netlify.app/search?q={search_term_string}',
+      target: 'https://the-office.dk/search?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   }
