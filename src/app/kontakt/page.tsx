@@ -223,12 +223,18 @@ function ContactContent() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="mt-8 bg-surface rounded-xl aspect-video flex items-center justify-center">
-                <div className="text-center text-warm-gray">
-                  <MapPin size={48} className="mx-auto mb-2 opacity-50" />
-                  <p className="text-sm">Google Maps</p>
-                </div>
+              {/* Google Maps */}
+              <div className="mt-8 rounded-xl overflow-hidden aspect-video">
+                <iframe
+                  src="https://maps.google.com/maps?q=Martensens+Allé+8,+1828+Frederiksberg,+Denmark&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="The Office lokation"
+                />
               </div>
 
               {/* Quick info */}
