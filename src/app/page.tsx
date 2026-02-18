@@ -33,7 +33,7 @@ export default function Home() {
       {/* ===== HERO — Full-screen, image-focused ===== */}
       <section className="h-screen relative flex items-end">
         <Image
-          src="/images/meeting/meeting-room.jpg"
+          src="/images/hero.jpg"
           alt="The Office"
           fill
           className="object-cover"
