@@ -1,18 +1,26 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState, useEffect, useMemo } from 'react'
 import { Menu, X, User, Phone } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/types'
 import { createClient } from '@/lib/supabase/client'
 import type { AuthChangeEvent, Session } from '@supabase/supabase-js'
 
+// Pages that need solid navbar background (no dark hero)
+const SOLID_NAV_PAGES = ['/login', '/min-side', '/opret-konto', '/admin', '/book']
+
 export default function Navigation() {
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [user, setUser] = useState<{ email: string } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const supabase = useMemo(() => createClient(), [])
+
+  // Always show solid background on certain pages
+  const needsSolidNav = SOLID_NAV_PAGES.includes(pathname)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +64,7 @@ export default function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || needsSolidNav
           ? 'bg-primary/95 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
